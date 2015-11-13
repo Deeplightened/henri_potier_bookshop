@@ -8,10 +8,10 @@ import java.util.List;
  */
 public class HPBookCart {
 
-    private final List<BookEntity> listHPBooks = new ArrayList<>();
-    private BookCommercialOffers commercialOffer;
+    private final List<HPBook> listHPBooks = new ArrayList<>();
+    private HPBookCommercialOffers commercialOffer;
 
-    public boolean addHPBook(BookEntity object) {
+    public boolean addHPBook(HPBook object) {
         return listHPBooks.add(object);
     }
 
@@ -19,19 +19,19 @@ public class HPBookCart {
         listHPBooks.clear();
     }
 
-    public BookEntity removeHPBook(int location) {
+    public HPBook removeHPBook(int location) {
         return listHPBooks.remove(location);
     }
 
-    public boolean removeHPBook(BookEntity object) {
+    public boolean removeHPBook(HPBook object) {
         return listHPBooks.remove(object);
     }
 
-    public BookCommercialOffers getCommercialOffer() {
+    public HPBookCommercialOffers getCommercialOffer() {
         return commercialOffer;
     }
 
-    public void setCommercialOffer(BookCommercialOffers commercialOffer) {
+    public void setCommercialOffer(HPBookCommercialOffers commercialOffer) {
         this.commercialOffer = commercialOffer;
     }
 }

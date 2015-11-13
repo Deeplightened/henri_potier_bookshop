@@ -10,6 +10,7 @@ import java.util.List;
 import fr.enlight.henripotierbookshop.entities.HPBookCommercialOffers;
 import fr.enlight.henripotierbookshop.entities.HPBook;
 import retrofit.Call;
+import retrofit.GsonConverterFactory;
 import retrofit.Response;
 import retrofit.Retrofit;
 
@@ -29,6 +30,7 @@ public class HPBookstoreServiceTest extends TestCase {
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(HPBookstoreService.BOOKSHOP_ENDPOINT)
+                .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
         hpBookstoreService = retrofit.create(HPBookstoreService.class);

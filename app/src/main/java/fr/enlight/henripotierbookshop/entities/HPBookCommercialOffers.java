@@ -1,7 +1,19 @@
 package fr.enlight.henripotierbookshop.entities;
 
+import java.util.List;
+
 /**
- * Created by enlight on 12/11/2015.
+ * A class defining the commercial offers made for a cart list of HP books.
  */
 public class HPBookCommercialOffers {
+
+    private List<HPBookOffer> offers;
+
+    public List<HPBookOffer> getOffers() {
+        return offers;
+    }
+
+    public void setOffers(List<HPBookOffer> offers) {
+        this.offers = offers;
+    }
 }
