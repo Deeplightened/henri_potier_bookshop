@@ -11,9 +11,10 @@ import retrofit.http.Path;
 /**
  * An interface describing
  */
-public interface HPBookstoreService {
+public interface IHPBookstoreService {
 
     String BOOKSHOP_ENDPOINT = "http://henri-potier.xebia.fr";
+    String ISBN_SEPARATOR = ",";
 
     @GET("/books")
     Call<List<HPBook>> getBookCatalog ();

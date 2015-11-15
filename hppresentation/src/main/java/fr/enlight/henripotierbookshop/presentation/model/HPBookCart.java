@@ -1,7 +1,10 @@
-package fr.enlight.hpdata.entities;
+package fr.enlight.henripotierbookshop.presentation.model;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import fr.enlight.hpdata.entities.HPBook;
+import fr.enlight.hpdata.entities.HPBookCommercialOffers;
 
 /**
  * A class defining the cart data used by the application. Contains all books reserved by the user and the associated commercial offer.
