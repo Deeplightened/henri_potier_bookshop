@@ -1,4 +1,4 @@
-package fr.enlight.hpdata.entities;
+package fr.enlight.hpdata.hpbooks.entities;
 
 /**
  * A class defining an offer element calculated from the bookstore commercial offers.

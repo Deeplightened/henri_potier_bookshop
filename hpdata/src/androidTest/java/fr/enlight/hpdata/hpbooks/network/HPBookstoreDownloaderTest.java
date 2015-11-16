@@ -1,6 +1,4 @@
-package fr.enlight.hpdata.network;
-
-import com.squareup.okhttp.ResponseBody;
+package fr.enlight.hpdata.hpbooks.network;
 
 import junit.framework.TestCase;
 
@@ -9,12 +7,8 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import fr.enlight.hpdata.entities.HPBook;
-import fr.enlight.hpdata.entities.HPBookCommercialOffers;
-import retrofit.Call;
-import retrofit.GsonConverterFactory;
-import retrofit.Response;
-import retrofit.Retrofit;
+import fr.enlight.hpdata.hpbooks.entities.HPBook;
+import fr.enlight.hpdata.hpbooks.entities.HPBookCommercialOffers;
 
 /**
  * Created by enlight on 15/11/2015.

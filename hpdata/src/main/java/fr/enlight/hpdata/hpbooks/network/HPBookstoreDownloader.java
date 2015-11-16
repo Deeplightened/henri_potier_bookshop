@@ -1,21 +1,15 @@
-package fr.enlight.hpdata.network;
-
-import android.content.Context;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
+package fr.enlight.hpdata.hpbooks.network;
 
 import java.util.List;
 
-import fr.enlight.hpdata.entities.HPBook;
-import fr.enlight.hpdata.entities.HPBookCommercialOffers;
+import fr.enlight.hpdata.hpbooks.entities.HPBook;
+import fr.enlight.hpdata.hpbooks.entities.HPBookCommercialOffers;
 import fr.enlight.hpdata.exceptions.InternalException;
 import fr.enlight.hpdata.exceptions.NetworkConnectivityException;
 import retrofit.Call;
 import retrofit.GsonConverterFactory;
 import retrofit.Response;
 import retrofit.Retrofit;
-import rx.Observable;
-import rx.Subscriber;
 
 /**
  * This class purpose is to provides an Observable object to subscribe for, which do download the wanted data form the bookstore REST API described in the HPBookstoreService.

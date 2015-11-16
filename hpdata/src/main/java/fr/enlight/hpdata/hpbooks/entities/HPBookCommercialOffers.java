@@ -1,4 +1,4 @@
-package fr.enlight.hpdata.entities;
+package fr.enlight.hpdata.hpbooks.entities;
 
 import java.util.List;
 

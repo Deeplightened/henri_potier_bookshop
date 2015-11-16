@@ -1,4 +1,4 @@
-package fr.enlight.hpdata.datasources;
+package fr.enlight.hpdata.hpbooks.datasources;
 
 import android.content.Context;
 import android.net.ConnectivityManager;
@@ -6,33 +6,41 @@ import android.net.NetworkInfo;
 
 import java.util.List;
 
-import fr.enlight.hpdata.entities.HPBook;
-import fr.enlight.hpdata.entities.HPBookCommercialOffers;
-import fr.enlight.hpdata.exceptions.InternalException;
 import fr.enlight.hpdata.exceptions.NetworkConnectivityException;
-import fr.enlight.hpdata.network.HPBookstoreDownloader;
-import fr.enlight.hpdata.network.IHPBookstoreService;
-import retrofit.Call;
-import retrofit.Response;
+import fr.enlight.hpdata.hpbooks.entities.HPBook;
+import fr.enlight.hpdata.hpbooks.entities.HPBookCommercialOffers;
+import fr.enlight.hpdata.hpbooks.network.HPBookstoreDownloader;
 import rx.Observable;
 import rx.Subscriber;
+import rx.functions.Action1;
 
 /**
  * Created by enlight on 15/11/2015.
  */
-public class CloudBookDataSource implements IBookDataSource {
+public class CloudHPBookDataSource implements IHPBookDataSource {
 
     private final Context context;
+    private final HPBooksCache booksCache;
     private final HPBookstoreDownloader hpBookstoreDownloader;
 
-    public CloudBookDataSource(Context context) {
+    private final Action1<List<HPBook>> saveCatalogCacheAction;
+
+    public CloudHPBookDataSource(Context context, HPBooksCache booksCache) {
         this.context = context;
+        this.booksCache = booksCache;
         hpBookstoreDownloader = new HPBookstoreDownloader();
+
+        saveCatalogCacheAction = new Action1<List<HPBook>>() {
+            @Override
+            public void call(List<HPBook> hpBooks) {
+                CloudHPBookDataSource.this.booksCache.saveDataInCache(hpBooks);
+            }
+        };
     }
 
     @Override
     public Observable<List<HPBook>> getBookCatalog() {
-        return Observable.create(new Observable.OnSubscribe<List<HPBook>>() {
+        Observable<List<HPBook>> observableResult = Observable.create(new Observable.OnSubscribe<List<HPBook>>() {
             @Override
             public void call(Subscriber<? super List<HPBook>> subscriber) {
                 if (!isInternetConnected()) {
@@ -52,6 +60,10 @@ public class CloudBookDataSource implements IBookDataSource {
                 }
             }
         });
+
+        observableResult = observableResult.doOnNext(saveCatalogCacheAction);
+
+        return observableResult;
     }
 
     @Override

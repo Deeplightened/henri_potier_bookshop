@@ -1,9 +1,9 @@
-package fr.enlight.hpdata.network;
+package fr.enlight.hpdata.hpbooks.network;
 
 import java.util.List;
 
-import fr.enlight.hpdata.entities.HPBookCommercialOffers;
-import fr.enlight.hpdata.entities.HPBook;
+import fr.enlight.hpdata.hpbooks.entities.HPBookCommercialOffers;
+import fr.enlight.hpdata.hpbooks.entities.HPBook;
 import retrofit.Call;
 import retrofit.http.GET;
 import retrofit.http.Path;
