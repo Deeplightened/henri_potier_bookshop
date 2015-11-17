@@ -1,10 +1,18 @@
 package fr.enlight.hpdata.interactors;
 
-import junit.framework.TestCase;
 
 /**
- * Created by yhuriez on 16/11/2015.
+ * Test class of the CommercialOffersInteractorTest.
+ * Tested behaviors :
+ * <ul>
+ *     <li></li>
+ *     <li></li>
+ * </ul>
  */
-public class CommercialOffersInteractorTest extends TestCase {
+public class CommercialOffersInteractorTest {
 
+
+    public void testSingleISBNCall(){
+
+    }
 }
