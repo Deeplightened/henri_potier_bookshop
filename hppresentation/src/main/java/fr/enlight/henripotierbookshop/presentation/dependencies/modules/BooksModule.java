@@ -20,6 +20,9 @@ import fr.enlight.hpdata.interactors.Interactor;
 @Module
 public class BooksModule {
 
+    public static final String BOOK_CATALOG_INTERACTOR = "bookCatalog";
+    public static final String COMMERCIAL_OFFER_INTERACTOR = "commercialOffer";
+
     private BookstoreModel bookstoreModel;
     private List<String> isbnBooks;
 
@@ -32,12 +35,12 @@ public class BooksModule {
         this.isbnBooks = isbnBooks;
     }
 
-    @Provides @ActivityScope @Named("bookCatalog")
+    @Provides @ActivityScope @Named(BOOK_CATALOG_INTERACTOR)
     Interactor<List<HPBook>> provideBookCatalog( ){
         return new BookCatalogInteractor(bookstoreModel);
     }
 
-    @Provides @ActivityScope @Named("commercialOffer")
+    @Provides @ActivityScope @Named(COMMERCIAL_OFFER_INTERACTOR)
     Interactor<HPBookCommercialOffers> provideCommercialOffers(){
         return new CommercialOffersInteractor(bookstoreModel, isbnBooks);
     }

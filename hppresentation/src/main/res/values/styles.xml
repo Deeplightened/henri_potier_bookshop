@@ -1,10 +1,21 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light">
     </style>
 
-    <style name="AppTheme.ConfirmButton" parent="AppTheme">
+    <style name="BaseTextView" parent="AppTheme">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:padding">@dimen/padding_textview</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="PriceTextView" parent="BaseTextView">
+        <item name="android:textColor">@color/theme_price_color</item>
+    </style>
+
+    <style name="ConfirmButton" parent="AppTheme">
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:padding">@dimen/padding_confirm_button</item>
@@ -15,4 +26,5 @@
     </style>
 
 
+    <dimen name="padding_textview">10dp</dimen>
 </resources>

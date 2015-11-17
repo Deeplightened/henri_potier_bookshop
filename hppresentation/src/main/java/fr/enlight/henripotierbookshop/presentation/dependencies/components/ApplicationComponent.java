@@ -4,7 +4,7 @@ import javax.inject.Singleton;
 
 import dagger.Component;
 import fr.enlight.henripotierbookshop.presentation.dependencies.modules.ApplicationModule;
-import fr.enlight.henripotierbookshop.presentation.views.activities.AbstractHPActivity;
+import fr.enlight.henripotierbookshop.presentation.views.activities.AbstractActivity;
 
 /**
  * A Dagger Component providing injection of module ApplicationModule in every Activity of the application.
@@ -13,5 +13,5 @@ import fr.enlight.henripotierbookshop.presentation.views.activities.AbstractHPAc
 @Component(modules = {ApplicationModule.class})
 public interface ApplicationComponent {
 
-    void inject(AbstractHPActivity application);
+    void inject(AbstractActivity application);
 }

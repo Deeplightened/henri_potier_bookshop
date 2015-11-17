@@ -6,7 +6,7 @@ import android.content.Intent;
 /**
  * Activity presenting the user cart, containing the reserved books.
  */
-public class BookCartActivity extends AbstractHPActivity {
+public class BookCartActivity extends AbstractActivity {
 
     /**
      * Creates the intent to start this activity.

@@ -1,41 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:background="@android:color/white">
 
     <ImageView
         android:id="@+id/book_cover_imageview"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"/>
 
     <TextView
         android:id="@+id/book_title_textview"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:padding="10dp"
-        android:text="Harry Potter"
-        android:textColor="@android:color/black"
-        android:textSize="16sp"
-        android:textStyle="italic" />
-
-    <TextView
-        android:id="@+id/book_price_textview"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:padding="10dp"
-        android:text="Harry Potter"
+        style="@style/BaseTextView"
+        android:layout_below="@id/book_cover_imageview"
         android:textColor="@android:color/black"
         android:textSize="16sp"
         android:textStyle="italic" />
 
     <TextView
         android:id="@+id/book_add_to_cart_button"
-        style="@style/AppTheme.ConfirmButton"
-        android:background="@android:color/black"
-        android:text="@string/book_short_add_to_cart"/>
+        style="@style/ConfirmButton"
+        android:layout_below="@id/book_title_textview"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="10dp"
+        android:layout_marginEnd="10dp"
+        android:text="@string/book_short_add_to_cart" />
 
+    <TextView
+        android:id="@+id/book_price_textview"
+        style="@style/PriceTextView"
+        android:layout_below="@id/book_title_textview"
+        android:layout_toLeftOf="@id/book_add_to_cart_button"
+        android:layout_toStartOf="@id/book_add_to_cart_button"
+        android:layout_marginRight="@dimen/widget_separation"
+        android:layout_marginEnd="@dimen/widget_separation"
+        android:singleLine="true"
+        android:ellipsize="end"
+        android:textSize="16sp"
+        android:textStyle="bold|italic" />
 
-</LinearLayout>
+</RelativeLayout>

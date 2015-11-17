@@ -22,9 +22,10 @@ android {
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-    // Advanced views (Material design and recycler view)
+    // Advanced views (Material design, recycler view, Progress fragment)
     compile 'com.android.support:appcompat-v7:23.1.1'
     compile 'com.android.support:recyclerview-v7:23.1.1'
+    compile 'com.github.johnkil.android-progressfragment:progressfragment:1.4.0'
 
     // Image downloader
     compile 'com.squareup.picasso:picasso:2.5.2'

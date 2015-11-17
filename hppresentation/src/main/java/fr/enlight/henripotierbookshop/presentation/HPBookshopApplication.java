@@ -25,7 +25,7 @@ public class HPBookshopApplication extends Application {
                 .build();
     }
 
-    public static ApplicationComponent getApplicationComponent() {
+    public ApplicationComponent getApplicationComponent() {
         return applicationComponent;
     }
 }
