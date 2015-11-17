@@ -1,16 +1,22 @@
-package fr.enlight.henripotierbookshop.presentation.activities;
+package fr.enlight.henripotierbookshop.presentation.views.activities;
 
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 
 import fr.enlight.henripotierbookshop.R;
 
 
-public class BookGridActivity extends ActionBarActivity {
+/**
+ * Activity presenting the catalog of books available for this application.
+ */
+public class BookCatalogActivity extends AbstractHPActivity {
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_book_grid);
     }
+
+
 }

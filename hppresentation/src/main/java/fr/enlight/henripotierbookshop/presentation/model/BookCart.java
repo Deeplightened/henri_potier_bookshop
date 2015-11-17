@@ -9,24 +9,24 @@ import fr.enlight.hpdata.hpbooks.entities.HPBookCommercialOffers;
 /**
  * A class defining the cart data used by the application. Contains all books reserved by the user and the associated commercial offer.
  */
-public class HPBookCart {
+public class BookCart {
 
     private final List<HPBook> listHPBooks = new ArrayList<>();
     private HPBookCommercialOffers commercialOffer;
 
-    public boolean addHPBook(HPBook object) {
+    public boolean addBook(HPBook object) {
         return listHPBooks.add(object);
     }
 
-    public void clearHPBooks() {
+    public void clearBooks() {
         listHPBooks.clear();
     }
 
-    public HPBook removeHPBook(int location) {
+    public HPBook removeBook(int location) {
         return listHPBooks.remove(location);
     }
 
-    public boolean removeHPBook(HPBook object) {
+    public boolean removeBook(HPBook object) {
         return listHPBooks.remove(object);
     }
 
