@@ -10,6 +10,7 @@ import javax.inject.Inject;
 
 import fr.enlight.henripotierbookshop.presentation.HPBookshopApplication;
 import fr.enlight.henripotierbookshop.presentation.dependencies.components.ApplicationComponent;
+import fr.enlight.henripotierbookshop.presentation.dependencies.modules.ApplicationModule;
 
 /**
  * The base for every Activity used in this application
@@ -45,5 +46,15 @@ public abstract class AbstractActivity extends AppCompatActivity {
      */
     protected ApplicationComponent getApplicationComponent() {
         return ((HPBookshopApplication) getApplication()).getApplicationComponent();
+    }
+
+    /**
+     * Get the ApplicationModule that allows dependencies injections of this application most
+     * used services, using Dagger.
+     *
+     * @return the concerned ApplicationModule
+     */
+    protected ApplicationModule getApplicationModule(){
+        return ((HPBookshopApplication) getApplication()).getApplicationModule();
     }
 }

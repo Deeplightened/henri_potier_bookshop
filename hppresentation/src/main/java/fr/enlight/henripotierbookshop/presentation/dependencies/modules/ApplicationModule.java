@@ -1,10 +1,12 @@
 package fr.enlight.henripotierbookshop.presentation.dependencies.modules;
 
-import javax.inject.Singleton;
+import android.content.Context;
 
 import dagger.Module;
 import dagger.Provides;
+import fr.enlight.henripotierbookshop.presentation.model.BookCartModel;
 import fr.enlight.henripotierbookshop.presentation.views.activities.NavigationManager;
+import fr.enlight.hpdata.hpbooks.BookstoreModel;
 
 /**
  * A Dagger Module providing application lifetime dependencies
@@ -12,8 +14,29 @@ import fr.enlight.henripotierbookshop.presentation.views.activities.NavigationMa
 @Module
 public class ApplicationModule {
 
-    @Provides @Singleton
-    NavigationManager providesNavigationManager(){
+    private final Context applicationContext;
+
+    public ApplicationModule(Context applicationContext){
+        this.applicationContext = applicationContext;
+    }
+
+    @Provides
+    Context provideApplicationContext(){
+        return applicationContext;
+    }
+
+    @Provides
+    NavigationManager provideNavigationManager(){
         return new NavigationManager();
+    }
+
+    @Provides
+    BookstoreModel provideBookstoreModel(Context context){
+        return new BookstoreModel(context);
+    }
+
+    @Provides
+    BookCartModel provideBookCartModel(){
+        return new BookCartModel();
     }
 }

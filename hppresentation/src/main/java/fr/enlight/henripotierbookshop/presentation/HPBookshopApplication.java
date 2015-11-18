@@ -12,6 +12,7 @@ import fr.enlight.henripotierbookshop.presentation.dependencies.modules.Applicat
 public class HPBookshopApplication extends Application {
 
     private static ApplicationComponent applicationComponent;
+    private ApplicationModule applicationModule;
 
     @Override
     public void onCreate() {
@@ -20,12 +21,19 @@ public class HPBookshopApplication extends Application {
     }
 
     private void initInjection() {
+        applicationModule = new ApplicationModule(getApplicationContext());
+
         applicationComponent = DaggerApplicationComponent.builder()
-                .applicationModule(new ApplicationModule())
+                .applicationModule(applicationModule)
                 .build();
     }
 
     public ApplicationComponent getApplicationComponent() {
         return applicationComponent;
     }
+    public ApplicationModule getApplicationModule() {
+        return applicationModule;
+    }
+
+
 }

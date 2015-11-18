@@ -3,17 +3,16 @@ package fr.enlight.henripotierbookshop.presentation.views.activities;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 
+import javax.inject.Inject;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import fr.enlight.henripotierbookshop.R;
 import fr.enlight.henripotierbookshop.presentation.dependencies.components.BooksComponent;
 import fr.enlight.henripotierbookshop.presentation.dependencies.components.DaggerBooksComponent;
-import fr.enlight.henripotierbookshop.presentation.dependencies.modules.ActivityModule;
 import fr.enlight.henripotierbookshop.presentation.dependencies.modules.BooksModule;
 import fr.enlight.henripotierbookshop.presentation.presenter.BookCatalogPresenter;
 import fr.enlight.henripotierbookshop.presentation.views.fragments.BookCatalogFragment;
-import fr.enlight.hpdata.hpbooks.BookstoreModel;
-import fr.enlight.hpdata.interactors.BookCatalogInteractor;
 
 
 /**
@@ -24,6 +23,7 @@ public class BookCatalogActivity extends AbstractActivity implements BookCatalog
     @Bind(R.id.toolbar)
     Toolbar toolbar;
 
+    @Inject
     BookCatalogPresenter bookCatalogPresenter;
 
     BooksComponent booksComponent;
@@ -43,22 +43,20 @@ public class BookCatalogActivity extends AbstractActivity implements BookCatalog
     }
 
     private void initInjection() {
-        booksComponent = DaggerBooksComponent.builder()
-                .applicationComponent(getApplicationComponent())
-                .activityModule(new ActivityModule(this))
-                .booksModule(new BooksModule(new BookstoreModel(this), null))
+        BooksComponent booksComponent = DaggerBooksComponent.builder()
+                .applicationModule(getApplicationModule())
+                .booksModule(new BooksModule())
                 .build();
+
+        booksComponent.inject(this);
     }
 
     private void initActivity() {
-//        booksComponent.inject(this);
-
         // Action bar
         setSupportActionBar(toolbar);
 
         bookCatalogFragment = (BookCatalogFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_book_catalog);
 
-        bookCatalogPresenter = new BookCatalogPresenter(new BookCatalogInteractor(new BookstoreModel(this)));
         bookCatalogPresenter.registerPresenterView(bookCatalogFragment);
     }
 

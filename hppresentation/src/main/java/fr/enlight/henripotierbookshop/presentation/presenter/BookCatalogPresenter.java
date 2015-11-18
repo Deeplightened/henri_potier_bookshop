@@ -3,21 +3,23 @@ package fr.enlight.henripotierbookshop.presentation.presenter;
 import java.util.Arrays;
 import java.util.List;
 
-import fr.enlight.henripotierbookshop.presentation.dependencies.scope.ActivityScope;
 import fr.enlight.henripotierbookshop.presentation.model.Book;
+import fr.enlight.henripotierbookshop.presentation.model.BookCartModel;
 import fr.enlight.hpdata.interactors.BookCatalogInteractor;
 
 /**
  * Created by enlight on 12/11/2015.
  */
-@ActivityScope
 public class BookCatalogPresenter implements AbstractPresenter {
 
     private final BookCatalogInteractor interactor;
+    private final BookCartModel bookCartModel;
+
     private BookCatalogPresenterView presenterView;
 
-    public BookCatalogPresenter(BookCatalogInteractor interactor){
+    public BookCatalogPresenter(BookCatalogInteractor interactor, BookCartModel bookCartModel){
         this.interactor = interactor;
+        this.bookCartModel = bookCartModel;
     }
 
     public void registerPresenterView(BookCatalogPresenterView presenterView) {
