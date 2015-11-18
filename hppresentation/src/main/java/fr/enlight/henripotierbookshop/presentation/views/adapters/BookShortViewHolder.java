@@ -51,6 +51,7 @@ public class BookShortViewHolder extends RecyclerView.ViewHolder {
             if(coverImageUrl != null){
                 Picasso.with(context)
                         .load(coverImageUrl)
+                        .fit()
                         .into(coverImageView);
             }
         }

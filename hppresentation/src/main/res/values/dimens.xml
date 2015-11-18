@@ -7,4 +7,7 @@
     <dimen name="widget_separation">10dp</dimen>
     <dimen name="grid_horizontal_spacing">10dp</dimen>
     <dimen name="grid_vertical_spacing">15dp</dimen>
+    <dimen name="light_border_margin">5dp</dimen>
+    <dimen name="heavy_border_margin">10dp</dimen>
+    <dimen name="book_cover_height">250dp</dimen>
 </resources>

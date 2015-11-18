@@ -8,12 +8,12 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:visibility="gone"
-        android:background="@color/theme_primary"/>
+        android:background="?attr/colorPrimary"/>
 
     <fragment
         android:name="fr.enlight.henripotierbookshop.presentation.views.fragments.BookCatalogFragment"
         android:id="@+id/fragment_book_catalog"
+        android:layout_below="@id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 
