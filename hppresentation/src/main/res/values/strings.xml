@@ -5,7 +5,10 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
 
-    <string name="book_short_add_to_cart">Acheter</string>
+    <string name="book_short_add_to_cart">Ajouter</string>
     <string name="country_currency_placeholder">%1$s €</string>
+    <string name="retry_text">Réessayer</string>
+    <string name="menu_cart">Panier</string>
+    <string name="error_message_network_failed">Une erreur est survenue pendant le téléchargement. Vérifiez si le réseau est disponible puis réessayer.</string>
 
 </resources>

@@ -10,6 +10,7 @@ import java.util.List;
 
 import fr.enlight.henripotierbookshop.R;
 import fr.enlight.henripotierbookshop.presentation.model.Book;
+import fr.enlight.henripotierbookshop.presentation.views.fragments.BookCatalogFragment;
 
 /**
  * An adapter to presents a list of Book
@@ -18,6 +19,7 @@ public class BookCatalogAdapter extends RecyclerView.Adapter<BookShortViewHolder
 
     private final Context context;
     private List<Book> bookList;
+    private BookCatalogFragment.OnBookCatalogInteractionListener interactionListener;
 
     public BookCatalogAdapter(Context context){
         this.context = context;
@@ -34,6 +36,7 @@ public class BookCatalogAdapter extends RecyclerView.Adapter<BookShortViewHolder
     public void onBindViewHolder(BookShortViewHolder bookShortViewHolder, int position) {
         if(bookList != null){
             bookShortViewHolder.setBook(bookList.get(position));
+            bookShortViewHolder.setInteractionListener(interactionListener);
         }
     }
 
@@ -47,5 +50,12 @@ public class BookCatalogAdapter extends RecyclerView.Adapter<BookShortViewHolder
 
     public void updateBookList(List<Book> newBooks){
         bookList = newBooks;
+    }
+
+    /**
+      * @param interactionListener the interaction listener
+     */
+    public void setInteractionListener(BookCatalogFragment.OnBookCatalogInteractionListener interactionListener) {
+        this.interactionListener = interactionListener;
     }
 }

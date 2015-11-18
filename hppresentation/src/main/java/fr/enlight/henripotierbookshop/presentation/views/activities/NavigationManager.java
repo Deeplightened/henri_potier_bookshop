@@ -18,7 +18,7 @@ public class NavigationManager {
      *
      * @param context the current context
      */
-    public void startBookCart(Context context){
+    public void startBookCartActivity(Context context){
         Intent intent = BookCartActivity.newIntent(context);
         context.startActivity(intent);
     }

@@ -1,56 +1,123 @@
 package fr.enlight.henripotierbookshop.presentation.presenter;
 
-import java.util.Arrays;
+import android.content.Context;
+import android.os.Handler;
+import android.os.Looper;
+import android.util.Log;
+
+import java.util.ArrayList;
 import java.util.List;
 
+import fr.enlight.henripotierbookshop.R;
 import fr.enlight.henripotierbookshop.presentation.model.Book;
 import fr.enlight.henripotierbookshop.presentation.model.BookCartModel;
+import fr.enlight.hpdata.hpbooks.entities.HPBook;
 import fr.enlight.hpdata.interactors.BookCatalogInteractor;
+import rx.Subscriber;
 
 /**
- * Created by enlight on 12/11/2015.
+ * This presenter aims to manage the model associated to the book catalogs views.
  */
 public class BookCatalogPresenter implements AbstractPresenter {
 
     private final BookCatalogInteractor interactor;
     private final BookCartModel bookCartModel;
 
-    private BookCatalogPresenterView presenterView;
+    private BookCatalogPresentableView presentableView;
+
+    private final Handler handler = new Handler(Looper.getMainLooper());
 
     public BookCatalogPresenter(BookCatalogInteractor interactor, BookCartModel bookCartModel){
         this.interactor = interactor;
         this.bookCartModel = bookCartModel;
     }
 
-    public void registerPresenterView(BookCatalogPresenterView presenterView) {
-        this.presenterView = presenterView;
+    public void setPresentableView(BookCatalogPresentableView presentableView) {
+        this.presentableView = presentableView;
     }
 
-    public void updateData(){
-        // TODO replace with real code
-        List<Book> bookList = Arrays.asList(
-            createBook("Henri Potier à l'école des sorciers", 35, "http://henri-potier.xebia.fr/hp0.jpg"),
-            createBook("Henri Potier et la Chambre des secrets", 30, "http://henri-potier.xebia.fr/hp1.jpg"),
-            createBook("Henri Potier et le Prisonnier d'Azkaban", 30, "http://henri-potier.xebia.fr/hp2.jpg"),
-            createBook("Henri Potier et la Coupe de feu", 29, "http://henri-potier.xebia.fr/hp3.jpg"),
-            createBook("Henri Potier et l'Ordre du phénix", 28, "http://henri-potier.xebia.fr/hp4.jpg"),
-            createBook("Henri Potier et le Prince de sang-mêlé",30, "http://henri-potier.xebia.fr/hp5.jpg"),
-            createBook( "Henri Potier et les Reliques de la Mort", 35, "http://henri-potier.xebia.fr/hp6.jpg")
-        );
-
-        presenterView.updateBookCatalog(bookList);
+    @Override
+    public void resume() {
+        // Nothing to do
     }
 
-    // TODO To remove
-    private Book createBook(String title, int price, String cover){
-        Book book = new Book();
-        book.setTitle(title);
-        book.setCoverImageUrl(cover);
-        book.setPrice((short) price);
-        return book;
+    @Override
+    public void pause() {
+        // Nothing to do
     }
 
-    public interface BookCatalogPresenterView extends PresenterView {
+    @Override
+    public void create() {
+        updateBookCatalog();
+    }
+
+    @Override
+    public void destroy() {
+        interactor.unsubscribeCurrentSubscription();
+    }
+
+    /**
+     * Ask for the book catalog to be loaded in the presentable view
+     */
+    public void updateBookCatalog(){
+        presentableView.showLoadingView();
+
+        interactor.execute(new BookCatalogSubscriber());
+    }
+
+    /**
+     * Convert received HPBook list to Book entity list managed by the presentation layer
+     * @param hpBooks the received HPBook list
+     * @return the converter Book list
+     */
+    private List<Book> convertHPBooks(List<HPBook> hpBooks) {
+        List<Book> result = new ArrayList<>();
+        Book book;
+        for (HPBook hpBook : hpBooks) {
+            book = Book.newInstance(hpBook.getTitle(), hpBook.getCover(), hpBook.getPrice(), hpBook.getIsbn());
+            result.add(book);
+        }
+        return result;
+    }
+
+    /**
+     * Add a book to the user cart.
+     *
+     * @param book the book to add
+     */
+    public void addToCart(Book book) {
+        if(book != null && !bookCartModel.containsBook(book)){
+            bookCartModel.addBook(book);
+        }
+    }
+
+    /**
+     * A Subscriber used to retrieve the list of HPBook from data, using the BookCatalogInteractor.
+     */
+    public final class BookCatalogSubscriber extends Subscriber<List<HPBook>>{
+        @Override
+        public void onCompleted() {
+            // TODO Vérifier pourquoi le onComplete n'est pas appelé
+        }
+
+        @Override
+        public void onError(Throwable exception) {
+            // TODO Error management
+            Context context = presentableView.getContext();
+            presentableView.onLoadingFailed(context.getString(R.string.error_message_network_failed));
+            Log.e(getClass().getSimpleName(), "Book catalog download failed", exception);
+        }
+
+        @Override
+        public void onNext(List<HPBook> hpBooks) {
+            List<Book> books = convertHPBooks(hpBooks);
+            presentableView.updateBookCatalog(books);
+            presentableView.hideLoadingView();
+            Log.i(getClass().getSimpleName(), "Book received : " + hpBooks.toString());
+        }
+    }
+
+    public interface BookCatalogPresentableView extends PresentableView {
 
         /**
          * Update the book catalog data presented by the listener.

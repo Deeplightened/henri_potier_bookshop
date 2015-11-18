@@ -20,7 +20,7 @@ public class BookCatalogInteractor extends Interactor<List<HPBook>> {
     }
 
     @Override
-    public Observable<List<HPBook>> buildInteractorObservable() {
+    protected Observable<List<HPBook>> buildInteractorObservable() {
         return bookstoreModel.getBookCatalog();
     }
 }

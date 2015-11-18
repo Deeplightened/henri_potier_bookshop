@@ -51,5 +51,5 @@ public abstract class Interactor<D> {
      *
      * @return the concerned Observable
      */
-    public abstract Observable<D> buildInteractorObservable();
+    protected abstract Observable<D> buildInteractorObservable();
 }

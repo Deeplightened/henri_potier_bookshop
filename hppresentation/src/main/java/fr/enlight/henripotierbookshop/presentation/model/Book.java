@@ -1,7 +1,5 @@
 package fr.enlight.henripotierbookshop.presentation.model;
 
-import fr.enlight.hpdata.hpbooks.entities.HPBook;
-
 /**
  * Created by yhuriez on 17/11/2015.
  */
@@ -12,12 +10,12 @@ public class Book {
     private short price;
     private String isbn;
 
-    public static Book newInstance(HPBook hpBook) {
+    public static Book newInstance(String title, String cover, short price, String isbn) {
         Book book = new Book();
-        book.setTitle(hpBook.getTitle());
-        book.setCoverImageUrl(hpBook.getCover());
-        book.setIsbn(hpBook.getIsbn());
-        book.setPrice(hpBook.getPrice());
+        book.setTitle(title);
+        book.setCoverImageUrl(cover);
+        book.setIsbn(isbn);
+        book.setPrice(price);
         return book;
     }
 
@@ -52,4 +50,6 @@ public class Book {
     public void setIsbn(String isbn) {
         this.isbn = isbn;
     }
+
+
 }

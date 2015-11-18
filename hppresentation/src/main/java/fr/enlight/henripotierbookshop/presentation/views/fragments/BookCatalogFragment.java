@@ -17,7 +17,7 @@ import fr.enlight.henripotierbookshop.presentation.views.adapters.BookCatalogAda
 /**
  * This fragment purpose is to presents the book catalog to the user.
  */
-public class BookCatalogFragment extends AbstractFragment implements BookCatalogPresenter.BookCatalogPresenterView {
+public class BookCatalogFragment extends AbstractFragment implements BookCatalogPresenter.BookCatalogPresentableView {
 
     private OnBookCatalogInteractionListener bookCatalogInteractionListener;
 
@@ -51,6 +51,8 @@ public class BookCatalogFragment extends AbstractFragment implements BookCatalog
 
         // Set adapter
         bookCatalogAdapter = new BookCatalogAdapter(context);
+        bookCatalogAdapter.setInteractionListener(bookCatalogInteractionListener);
+
         recyclerView.setAdapter(bookCatalogAdapter);
     }
 
@@ -61,17 +63,6 @@ public class BookCatalogFragment extends AbstractFragment implements BookCatalog
         super.onAttach(context);
         if(context instanceof OnBookCatalogInteractionListener){
             bookCatalogInteractionListener = (OnBookCatalogInteractionListener) context;
-        }
-    }
-
-    /**
-     * Notify the bookCatalogInteractionListener that the user asked a book to be added to the cart.
-     *
-     * @param bookPosition the position of the concerned book.
-     */
-    private void notifyAddToCartSelected(int bookPosition){
-        if(bookCatalogInteractionListener != null){
-            bookCatalogInteractionListener.onAddToCartSelected(bookPosition);
         }
     }
 
@@ -90,9 +81,14 @@ public class BookCatalogFragment extends AbstractFragment implements BookCatalog
 
         /**
          * Called when the user has asked a book to be added to the cart.
-         * @param bookPosition the position of the concerned book
+         * @param book the concerned book
          */
-        void onAddToCartSelected(int bookPosition);
+        void onAddToCartSelected(Book book);
+
+        /**
+         * Retry the loading of the book list
+         */
+        void onRetryBookLoading();
     }
 
     // endregion

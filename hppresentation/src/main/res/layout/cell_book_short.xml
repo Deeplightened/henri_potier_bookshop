@@ -13,10 +13,8 @@
 
     <TextView
         android:id="@+id/book_title_textview"
-        style="@style/BaseTextView"
+        style="@style/TitleTextView"
         android:layout_width="match_parent"
-        android:textColor="@android:color/black"
-        android:textSize="16sp"
         android:textStyle="italic" />
 
     <RelativeLayout
@@ -31,6 +29,9 @@
             android:layout_alignParentRight="true"
             android:layout_marginEnd="@dimen/heavy_border_margin"
             android:layout_marginRight="@dimen/heavy_border_margin"
+            android:drawableLeft="@drawable/add_cart"
+            android:drawableStart="@drawable/add_cart"
+            android:drawablePadding="@dimen/padding_soft"
             android:text="@string/book_short_add_to_cart" />
 
         <TextView

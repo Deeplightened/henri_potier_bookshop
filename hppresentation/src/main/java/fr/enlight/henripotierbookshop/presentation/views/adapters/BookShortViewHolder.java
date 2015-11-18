@@ -10,8 +10,10 @@ import com.squareup.picasso.Picasso;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import fr.enlight.henripotierbookshop.R;
 import fr.enlight.henripotierbookshop.presentation.model.Book;
+import fr.enlight.henripotierbookshop.presentation.views.fragments.BookCatalogFragment;
 
 /**
  * A ViewHolder used to contains
@@ -29,6 +31,9 @@ public class BookShortViewHolder extends RecyclerView.ViewHolder {
     @Bind(R.id.book_cover_imageview)
     ImageView coverImageView;
 
+    private BookCatalogFragment.OnBookCatalogInteractionListener interactionListener;
+    private Book bookModel;
+
     public BookShortViewHolder(Context context, View itemView) {
         super(itemView);
         this.context = context;
@@ -37,6 +42,9 @@ public class BookShortViewHolder extends RecyclerView.ViewHolder {
 
     public void setBook(Book book){
         if(book != null){
+
+            bookModel = book;
+
             String title = book.getTitle();
             short price = book.getPrice();
             String coverImageUrl = book.getCoverImageUrl();
@@ -57,4 +65,14 @@ public class BookShortViewHolder extends RecyclerView.ViewHolder {
         }
     }
 
+    @OnClick(R.id.book_add_to_cart_button)
+    public void onAddToCartClicked(){
+        if(interactionListener != null){
+            interactionListener.onAddToCartSelected(bookModel);
+        }
+    }
+
+    public void setInteractionListener(BookCatalogFragment.OnBookCatalogInteractionListener interactionListener) {
+        this.interactionListener = interactionListener;
+    }
 }

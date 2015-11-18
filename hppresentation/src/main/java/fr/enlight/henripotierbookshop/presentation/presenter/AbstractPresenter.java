@@ -1,13 +1,23 @@
 package fr.enlight.henripotierbookshop.presentation.presenter;
 
+import android.content.Context;
+
 /**
  * Created by enlight on 17/11/2015.
  */
 public interface AbstractPresenter {
 
+    void resume();
 
+    void pause();
 
-    interface PresenterView {
+    void create();
+
+    void destroy();
+
+    interface PresentableView {
+
+        Context getContext();
 
         void hideLoadingView();
 
