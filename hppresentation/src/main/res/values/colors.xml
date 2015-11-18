@@ -3,6 +3,7 @@
     <color name="theme_primary">#d7824f</color>
     <color name="theme_primary_darker">#A44F1C</color>
     <color name="theme_primary_lighter">#FFCF9C</color>
+    <color name="theme_text_primary">#FFFFFF</color>
     <color name="theme_secondary">#846b4d</color>
     <color name="theme_button_background">#7c2d28</color>
     <color name="theme_button_background_pressed">#490000</color>

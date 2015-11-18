@@ -54,7 +54,7 @@ public class BookCatalogActivity extends AbstractActivity implements BookCatalog
 //        booksComponent.inject(this);
 
         // Action bar
-//        setSupportActionBar(toolbar);
+        setSupportActionBar(toolbar);
 
         bookCatalogFragment = (BookCatalogFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_book_catalog);
 
