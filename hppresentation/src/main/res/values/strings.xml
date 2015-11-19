@@ -12,7 +12,6 @@
 
     <!--Offers and Prices-->
     <string name="country_currency_placeholder">%1$s €</string>
-    <string name="percentage_placeholder">%1$s %</string>
     <string name="percentage_reduction_message">Réduction globale sur les livres :</string>
     <string name="minus_reduction_message">Réduction offerte sur le panier :</string>
     <string name="slice_reduction_message_placeholder">Réduction offerte pour %1$s € d\'achat :</string>

@@ -15,7 +15,7 @@
     <dimen name="heavy_border_margin">10dp</dimen>
 
     <dimen name="book_cover_height_catalog">250dp</dimen>
-    <dimen name="book_cover_height_cart_item">150dp</dimen>
+    <dimen name="book_cover_height_cart_item">120dp</dimen>
 
     <dimen name="error_message_size">16sp</dimen>
     <dimen name="title_size">16sp</dimen>

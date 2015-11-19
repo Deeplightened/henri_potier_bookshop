@@ -23,7 +23,7 @@
 
         <TextView
             android:id="@+id/book_add_to_cart_button"
-            style="@style/ConfirmButton"
+            style="@style/AddToCartButton"
             android:layout_alignParentBottom="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"

@@ -2,15 +2,13 @@ package fr.enlight.henripotierbookshop.presentation.views.activities;
 
 import android.app.Fragment;
 import android.app.FragmentTransaction;
-import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.support.v7.app.AppCompatActivity;
 
 import javax.inject.Inject;
 
 import fr.enlight.henripotierbookshop.presentation.HPBookshopApplication;
 import fr.enlight.henripotierbookshop.presentation.dependencies.components.ApplicationComponent;
-import fr.enlight.henripotierbookshop.presentation.dependencies.modules.ApplicationModule;
+import fr.enlight.henripotierbookshop.presentation.dependencies.components.BooksComponent;
 
 /**
  * The base for every Activity used in this application
@@ -19,12 +17,6 @@ public abstract class AbstractActivity extends AppCompatActivity {
 
     @Inject
     NavigationManager navigationManager;
-
-    @Override
-    public void onCreate(Bundle savedInstanceState, PersistableBundle persistentState) {
-        super.onCreate(savedInstanceState, persistentState);
-        getApplicationComponent().inject(this);
-    }
 
     /**
      * Adds a {@link Fragment} to this activity's layout.
@@ -49,12 +41,11 @@ public abstract class AbstractActivity extends AppCompatActivity {
     }
 
     /**
-     * Get the ApplicationModule that allows dependencies injections of this application most
-     * used services, using Dagger.
+     * Get the BooksComponent that allows dependencies injections of the needed books services, using Dagger.
      *
-     * @return the concerned ApplicationModule
+     * @return the concerned BooksComponent
      */
-    protected ApplicationModule getApplicationModule(){
-        return ((HPBookshopApplication) getApplication()).getApplicationModule();
+    protected BooksComponent getBooksComponent() {
+        return ((HPBookshopApplication) getApplication()).getBooksComponent();
     }
 }

@@ -3,10 +3,13 @@ package fr.enlight.henripotierbookshop.presentation.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.inject.Singleton;
+
 /**
  * Describe the book cart data, containing the list of books added to cart and the commercial offers
  * given for theses books.
  */
+@Singleton
 public class BookCartModel {
 
     private final List<Book> listBooks = new ArrayList<>();

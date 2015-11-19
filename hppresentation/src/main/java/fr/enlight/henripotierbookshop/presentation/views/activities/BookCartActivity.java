@@ -10,9 +10,8 @@ import javax.inject.Inject;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import fr.enlight.henripotierbookshop.R;
-import fr.enlight.henripotierbookshop.presentation.dependencies.components.BooksComponent;
-import fr.enlight.henripotierbookshop.presentation.dependencies.components.DaggerBooksComponent;
-import fr.enlight.henripotierbookshop.presentation.dependencies.modules.BooksModule;
+import fr.enlight.henripotierbookshop.presentation.dependencies.components.BookCartComponent;
+import fr.enlight.henripotierbookshop.presentation.dependencies.modules.BookCartModule;
 import fr.enlight.henripotierbookshop.presentation.model.Book;
 import fr.enlight.henripotierbookshop.presentation.presenter.BookCartPresenter;
 import fr.enlight.henripotierbookshop.presentation.views.fragments.AbstractFragment;
@@ -56,19 +55,15 @@ public class BookCartActivity extends AbstractActivity implements BookCartFragme
     }
 
     private void initInjection() {
-        BooksComponent booksComponent = DaggerBooksComponent.builder()
-                .applicationModule(getApplicationModule())
-                .booksModule(new BooksModule())
-                .build();
-
-        booksComponent.inject(this);
+        BookCartComponent bookCartComponent = getBooksComponent().addModule(new BookCartModule());
+        bookCartComponent.inject(this);
     }
 
     private void initActivity() {
         // Action bar
         setSupportActionBar(toolbar);
 
-        bookCartFragment = (BookCartFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_book_catalog);
+        bookCartFragment = (BookCartFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_book_cart);
 
         bookCartPresenter.setPresentableView(bookCartFragment);
     }

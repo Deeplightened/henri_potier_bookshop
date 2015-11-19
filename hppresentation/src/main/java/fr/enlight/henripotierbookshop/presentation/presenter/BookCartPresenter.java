@@ -47,7 +47,6 @@ public class BookCartPresenter implements AbstractPresenter {
     @Override
     public void create() {
         loadCartContent();
-        loadCommercialOffers();
     }
 
     @Override
@@ -56,18 +55,10 @@ public class BookCartPresenter implements AbstractPresenter {
     }
 
     /**
-     * Ask to load the list of books that has been added to the cart.
-     * The PresentableView is then updated with the method updateCartContent.
+     * Ask to load the cart content (list of books and commercial offers associated to this list).
+     * The PresentableView is then updated with the method updateCartContent and updateCartTotalPrice.
      */
     private void loadCartContent() {
-        presentableView.updateCartContent(bookCartModel.getListBooks());
-    }
-
-    /**
-     * Ask to load commercial offers associated to the list of books presents in the cart.
-     * The PresentableView is then updated with the method updateCommercialOffers and updateCartTotalPrice.
-     */
-    private void loadCommercialOffers() {
         presentableView.showLoadingView();
 
         // Prepare parameters
@@ -96,16 +87,12 @@ public class BookCartPresenter implements AbstractPresenter {
 
             for (HPBookOffer hpOffer : hpOffers) {
                 bookOffer = initBookOfferFromHPOffer(hpOffer, rawTotal);
-                bookOffers.add(bookOffer);
+                if(bookOffer != null){
+                    bookOffers.add(bookOffer);
+                }
             }
 
             bookCartModel.setOfferList(bookOffers);
-
-            // Commercial offers notification
-            presentableView.updateCommercialOffers(bookCartModel.getOfferList());
-
-            // Cart total notification
-            presentableView.updateCartTotalPrice(bookCartModel.computeTotalWithOffers());
         }
     }
 
@@ -124,7 +111,7 @@ public class BookCartPresenter implements AbstractPresenter {
         switch (bookOffer.getType()){
             case HPBookOffer.PERCENTAGE_TYPE:
                 offerMessage = context.getString(R.string.percentage_reduction_message);
-                reductionMessage = context.getString(R.string.percentage_placeholder, bookOffer.getValue());
+                reductionMessage = Short.toString(bookOffer.getValue()) + " %";
                 reductionType = BookOffer.PERCENTAGE_REDUCTION_TYPE;
                 break;
             case HPBookOffer.MINUS_TYPE:
@@ -149,12 +136,20 @@ public class BookCartPresenter implements AbstractPresenter {
     }
 
     /**
+     * Notifies the PresentableView that the cart has been updated
+     */
+    private void notifyCartUpdated() {
+        presentableView.updateCartContent(bookCartModel.getListBooks(), bookCartModel.getOfferList());
+        presentableView.updateCartTotalPrice(bookCartModel.computeTotalWithOffers());
+    }
+
+    /**
      * Delete a book item from the cart, then update the PresentableView
      * @param bookItem the book item to delete
      */
     public void deleteBookItem(Book bookItem) {
         bookCartModel.removeBook(bookItem);
-        presentableView.updateCartContent(bookCartModel.getListBooks());
+        notifyCartUpdated();
     }
 
     /**
@@ -169,7 +164,6 @@ public class BookCartPresenter implements AbstractPresenter {
 
         @Override
         public void onError(Throwable exception) {
-            // TODO Error management
             Context context = presentableView.getContext();
             presentableView.onLoadingFailed(context.getString(R.string.error_message_network_failed));
             Log.e(getClass().getSimpleName(), "Book commercial offers download failed", exception);
@@ -178,6 +172,7 @@ public class BookCartPresenter implements AbstractPresenter {
         @Override
         public void onNext(HPBookCommercialOffers hpBookCommercialOffers) {
             updateCartWithCommercialOffers(hpBookCommercialOffers);
+            notifyCartUpdated();
             presentableView.hideLoadingView();
         }
     }
@@ -185,18 +180,13 @@ public class BookCartPresenter implements AbstractPresenter {
     public interface BookCartPresentableView extends PresentableView{
 
         /**
-         * Ask the PresentableView to update the presentation of the cart with the given books.
+         * Ask the PresentableView to update the presentation of the cart with
+         * the given books and list of offers associated.
          *
          * @param cartBooks the concerned books
-         */
-        void updateCartContent(List<Book> cartBooks);
-
-        /**
-         * Ask the PresentableView to update the list of offers associated to the current cart
-         *
          * @param bookOffers the concerned list of offers
          */
-        void updateCommercialOffers(List<BookOffer> bookOffers);
+        void updateCartContent(List<Book> cartBooks, List<BookOffer> bookOffers);
 
         /**
          * Ask the PresentableView to update the total price of the cart

@@ -18,10 +18,12 @@ import fr.enlight.henripotierbookshop.presentation.views.fragments.BookCartFragm
  */
 public class BookCartAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
+    public static final int BOOK_ITEM_VIEWTYPE = 0;
+    public static final int OFFER_ITEM_VIEWTYPE = 1;
+
     private final Context context;
 
-    private List<Book> bookItemList;
-    private List<BookOffer> bookOfferList;
+    private List cartItems;
 
     private BookCartFragment.OnBookCartInteractionListener interactionListener;
 
@@ -30,15 +32,15 @@ public class BookCartAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     }
 
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int position) {
-        if(isBookItemPosition(position)) {
+    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
+        if(viewType == BOOK_ITEM_VIEWTYPE) {
             View itemView = LayoutInflater.from(context)
-                    .inflate(R.layout.cell_book_short, viewGroup, false);
+                    .inflate(R.layout.cell_book_cart_item, viewGroup, false);
             return new BookCartItemViewHolder(context, itemView);
-        } else if(isBookOfferPosition(position)){
+        } else if(viewType == OFFER_ITEM_VIEWTYPE){
             View itemView = LayoutInflater.from(context)
-                    .inflate(R.layout.cell_book_short, viewGroup, false);
-            return new BookOfferViewHolder(context, itemView);
+                    .inflate(R.layout.cell_book_cart_offer, viewGroup, false);
+            return new BookOfferViewHolder(itemView);
         } else {
             throw new IllegalStateException("The data list doesn't match the given item count");
         }
@@ -46,51 +48,41 @@ public class BookCartAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int position) {
-        if(viewHolder instanceof BookCartItemViewHolder){
-            if (bookItemList != null) {
+        if(cartItems != null) {
+            if (viewHolder instanceof BookCartItemViewHolder) {
                 BookCartItemViewHolder bookCartHolder = (BookCartItemViewHolder) viewHolder;
-                bookCartHolder.setBook(bookItemList.get(position));
+                bookCartHolder.setBook((Book) cartItems.get(position));
                 bookCartHolder.setInteractionListener(interactionListener);
-            }
-        } else if(viewHolder instanceof BookOfferViewHolder) {
-            if (bookOfferList != null) {
-                ((BookOfferViewHolder) viewHolder).setBookOffer(bookOfferList.get(position));
+            } else if (viewHolder instanceof BookOfferViewHolder) {
+                ((BookOfferViewHolder) viewHolder).setBookOffer((BookOffer) cartItems.get(position));
             }
         }
     }
 
-    private boolean isBookItemPosition(int position){
-        return position < bookItemList.size();
-    }
-
-    private boolean isBookOfferPosition(int position){
-        return position >= bookItemList.size() && position < bookOfferList.size();
+    @Override
+    public int getItemViewType(int position) {
+        Object cartItem = cartItems.get(position);
+        if(cartItem.getClass() == Book.class){
+            return BOOK_ITEM_VIEWTYPE;
+        } else if (cartItem.getClass() == BookOffer.class){
+            return OFFER_ITEM_VIEWTYPE;
+        }
+        return -1;
     }
 
     @Override
     public int getItemCount() {
-        int itemCount = 0;
-        if(bookItemList != null){
-            itemCount += bookItemList.size();
+        if(cartItems == null){
+            return 0;
         }
-        if (bookOfferList != null) {
-            itemCount += bookOfferList.size();
-        }
-        return itemCount;
+        return cartItems.size();
     }
 
     /**
-     * @param bookItemList the book list updated
+     * @param cartItems the cart items to update
      */
-    public void updateBookItemList(List<Book> bookItemList) {
-        this.bookItemList = bookItemList;
-    }
-
-    /**
-     * @param bookOfferList the list of offers updated
-     */
-    public void updateBookOfferList(List<BookOffer> bookOfferList) {
-        this.bookOfferList = bookOfferList;
+    public void updateCartItemList(List cartItems) {
+        this.cartItems = cartItems;
     }
 
     /**

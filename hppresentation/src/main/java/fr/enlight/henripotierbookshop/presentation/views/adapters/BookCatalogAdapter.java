@@ -28,7 +28,7 @@ public class BookCatalogAdapter extends RecyclerView.Adapter<BookShortViewHolder
     @Override
     public BookShortViewHolder onCreateViewHolder(ViewGroup viewGroup, int position) {
         View itemView = LayoutInflater.from(context)
-                .inflate(R.layout.cell_book_short, viewGroup, false);
+                .inflate(R.layout.cell_book_catalog, viewGroup, false);
         return new BookShortViewHolder(context, itemView);
     }
 

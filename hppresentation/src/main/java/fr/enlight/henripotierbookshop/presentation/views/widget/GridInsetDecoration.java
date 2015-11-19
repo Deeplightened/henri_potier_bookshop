@@ -1,4 +1,4 @@
-package fr.enlight.henripotierbookshop.presentation.utils;/*
+package fr.enlight.henripotierbookshop.presentation.views.widget;/*
  * Copyright 2015 Uwe Trottmann
  *
  * Licensed under the Apache License, Version 2.0 (the "License");

@@ -2,6 +2,8 @@ package fr.enlight.henripotierbookshop.presentation.dependencies.modules;
 
 import android.content.Context;
 
+import javax.inject.Singleton;
+
 import dagger.Module;
 import dagger.Provides;
 import fr.enlight.henripotierbookshop.presentation.views.activities.NavigationManager;
@@ -14,17 +16,19 @@ public class ApplicationModule {
 
     private final Context applicationContext;
 
-    public ApplicationModule(Context applicationContext){
+    public ApplicationModule(Context applicationContext) {
         this.applicationContext = applicationContext;
     }
 
     @Provides
-    Context provideApplicationContext(){
+    @Singleton
+    Context provideApplicationContext() {
         return applicationContext;
     }
 
     @Provides
-    NavigationManager provideNavigationManager(){
+    @Singleton
+    NavigationManager provideNavigationManager() {
         return new NavigationManager();
     }
 }

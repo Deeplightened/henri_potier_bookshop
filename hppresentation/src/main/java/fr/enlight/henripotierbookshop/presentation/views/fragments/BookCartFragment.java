@@ -1,12 +1,14 @@
 package fr.enlight.henripotierbookshop.presentation.views.fragments;
 
 import android.content.Context;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
@@ -46,6 +48,8 @@ public class BookCartFragment extends AbstractFragment implements BookCartPresen
     protected void initViews(View view) {
         Context context = getActivity();
 
+        recyclerView.setLayoutManager(new LinearLayoutManager(context));
+
         // Set adapter
         bookCartAdapter = new BookCartAdapter(context);
         bookCartAdapter.setInteractionListener(bookCartInteractionListener);
@@ -71,14 +75,12 @@ public class BookCartFragment extends AbstractFragment implements BookCartPresen
     }
 
     @Override
-    public void updateCartContent(List<Book> cartBooks) {
-        bookCartAdapter.updateBookItemList(cartBooks);
-        bookCartAdapter.notifyDataSetChanged();
-    }
+    public void updateCartContent(List<Book> cartBooks, List<BookOffer> bookOffers) {
+        List<Object> cartItems = new ArrayList<>();
+        cartItems.addAll(cartBooks);
+        cartItems.addAll(bookOffers);
 
-    @Override
-    public void updateCommercialOffers(List<BookOffer> bookOffers) {
-        bookCartAdapter.updateBookOfferList(bookOffers);
+        bookCartAdapter.updateCartItemList(cartItems);
         bookCartAdapter.notifyDataSetChanged();
     }
 
@@ -87,6 +89,11 @@ public class BookCartFragment extends AbstractFragment implements BookCartPresen
         NumberFormat numberFormat = new DecimalFormat("#.00");
         String formattedTotal = numberFormat.format(total);
         totalValueTextView.setText(getString(R.string.country_currency_placeholder, formattedTotal));
+
+        // Set TVA
+        double tva = getResources().getInteger(R.integer.tva_percentage_per_100) / total;
+        String formattedTva = numberFormat.format(tva);
+        tvaTextView.setText(getString(R.string.book_cart_tva_placeholder, formattedTva));
     }
 
     /**

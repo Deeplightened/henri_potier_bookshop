@@ -1,15 +1,19 @@
 package fr.enlight.henripotierbookshop.presentation.dependencies.components;
 
-import dagger.Component;
+import dagger.Subcomponent;
+import fr.enlight.henripotierbookshop.presentation.dependencies.modules.BookCartModule;
+import fr.enlight.henripotierbookshop.presentation.dependencies.modules.BookCatalogModule;
 import fr.enlight.henripotierbookshop.presentation.dependencies.modules.BooksModule;
-import fr.enlight.henripotierbookshop.presentation.views.activities.BookCartActivity;
-import fr.enlight.henripotierbookshop.presentation.views.activities.BookCatalogActivity;
+import fr.enlight.henripotierbookshop.presentation.dependencies.scope.BookScope;
 
 /**
  * A Dagger component that injects dependencies linked to the bookstore.
  */
-@Component(modules = BooksModule.class)
+@BookScope
+@Subcomponent(modules = BooksModule.class)
 public interface BooksComponent {
-    void inject(BookCatalogActivity activity);
-    void inject(BookCartActivity activity);
+
+    BookCatalogComponent addModule(BookCatalogModule bookCatalogModule);
+
+    BookCartComponent addModule(BookCartModule bookCartModule);
 }

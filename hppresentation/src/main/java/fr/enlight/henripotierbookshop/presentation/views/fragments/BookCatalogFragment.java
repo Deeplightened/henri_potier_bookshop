@@ -11,7 +11,7 @@ import butterknife.Bind;
 import fr.enlight.henripotierbookshop.R;
 import fr.enlight.henripotierbookshop.presentation.model.Book;
 import fr.enlight.henripotierbookshop.presentation.presenter.BookCatalogPresenter;
-import fr.enlight.henripotierbookshop.presentation.utils.GridInsetDecoration;
+import fr.enlight.henripotierbookshop.presentation.views.widget.GridInsetDecoration;
 import fr.enlight.henripotierbookshop.presentation.views.adapters.BookCatalogAdapter;
 
 /**

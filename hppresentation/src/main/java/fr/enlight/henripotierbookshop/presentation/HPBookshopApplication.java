@@ -3,16 +3,18 @@ package fr.enlight.henripotierbookshop.presentation;
 import android.app.Application;
 
 import fr.enlight.henripotierbookshop.presentation.dependencies.components.ApplicationComponent;
+import fr.enlight.henripotierbookshop.presentation.dependencies.components.BooksComponent;
 import fr.enlight.henripotierbookshop.presentation.dependencies.components.DaggerApplicationComponent;
 import fr.enlight.henripotierbookshop.presentation.dependencies.modules.ApplicationModule;
+import fr.enlight.henripotierbookshop.presentation.dependencies.modules.BooksModule;
 
 /**
  * The Application class. Extended to allows dagger injection.
  */
 public class HPBookshopApplication extends Application {
 
-    private static ApplicationComponent applicationComponent;
-    private ApplicationModule applicationModule;
+    private ApplicationComponent applicationComponent;
+    private BooksComponent booksComponent;
 
     @Override
     public void onCreate() {
@@ -21,19 +23,19 @@ public class HPBookshopApplication extends Application {
     }
 
     private void initInjection() {
-        applicationModule = new ApplicationModule(getApplicationContext());
-
         applicationComponent = DaggerApplicationComponent.builder()
-                .applicationModule(applicationModule)
+                .applicationModule(new ApplicationModule(getApplicationContext()))
                 .build();
     }
 
     public ApplicationComponent getApplicationComponent() {
         return applicationComponent;
     }
-    public ApplicationModule getApplicationModule() {
-        return applicationModule;
+
+    public BooksComponent getBooksComponent(){
+        if (booksComponent == null) {
+            booksComponent = applicationComponent.addModule(new BooksModule());
+        }
+        return booksComponent;
     }
-
-
 }

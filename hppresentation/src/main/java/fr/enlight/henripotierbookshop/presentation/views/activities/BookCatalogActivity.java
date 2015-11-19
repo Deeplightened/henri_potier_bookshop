@@ -10,9 +10,8 @@ import javax.inject.Inject;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import fr.enlight.henripotierbookshop.R;
-import fr.enlight.henripotierbookshop.presentation.dependencies.components.BooksComponent;
-import fr.enlight.henripotierbookshop.presentation.dependencies.components.DaggerBooksComponent;
-import fr.enlight.henripotierbookshop.presentation.dependencies.modules.BooksModule;
+import fr.enlight.henripotierbookshop.presentation.dependencies.components.BookCatalogComponent;
+import fr.enlight.henripotierbookshop.presentation.dependencies.modules.BookCatalogModule;
 import fr.enlight.henripotierbookshop.presentation.model.Book;
 import fr.enlight.henripotierbookshop.presentation.presenter.BookCatalogPresenter;
 import fr.enlight.henripotierbookshop.presentation.views.fragments.AbstractFragment;
@@ -47,12 +46,8 @@ public class BookCatalogActivity extends AbstractActivity implements BookCatalog
     }
 
     private void initInjection() {
-        BooksComponent booksComponent = DaggerBooksComponent.builder()
-                .applicationModule(getApplicationModule())
-                .booksModule(new BooksModule())
-                .build();
-
-        booksComponent.inject(this);
+        BookCatalogComponent bookCatalogComponent = getBooksComponent().addModule(new BookCatalogModule());
+        bookCatalogComponent.inject(this);
     }
 
     private void initActivity() {
