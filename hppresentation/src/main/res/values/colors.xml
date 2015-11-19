@@ -8,7 +8,9 @@
     <color name="theme_button_background">#7c2d28</color>
     <color name="theme_button_background_pressed">#490000</color>
     <color name="theme_price_color">#453f63</color>
-    <color name="rand2">#8a5780</color>
+    <color name="theme_thirdly">#8a5780</color>
+    <color name="button_added_to_cart_background">#CCCCCC</color>
+    <color name="button_added_to_cart_text">#888888</color>
 
 
 </resources>

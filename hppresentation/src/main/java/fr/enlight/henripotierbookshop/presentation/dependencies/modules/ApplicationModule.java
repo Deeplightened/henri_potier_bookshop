@@ -4,9 +4,7 @@ import android.content.Context;
 
 import dagger.Module;
 import dagger.Provides;
-import fr.enlight.henripotierbookshop.presentation.model.BookCartModel;
 import fr.enlight.henripotierbookshop.presentation.views.activities.NavigationManager;
-import fr.enlight.hpdata.hpbooks.BookstoreModel;
 
 /**
  * A Dagger Module providing application lifetime dependencies
@@ -28,15 +26,5 @@ public class ApplicationModule {
     @Provides
     NavigationManager provideNavigationManager(){
         return new NavigationManager();
-    }
-
-    @Provides
-    BookstoreModel provideBookstoreModel(Context context){
-        return new BookstoreModel(context);
-    }
-
-    @Provides
-    BookCartModel provideBookCartModel(){
-        return new BookCartModel();
     }
 }

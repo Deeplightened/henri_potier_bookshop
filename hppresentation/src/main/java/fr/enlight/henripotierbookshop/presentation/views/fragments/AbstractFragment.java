@@ -1,5 +1,7 @@
 package fr.enlight.henripotierbookshop.presentation.views.fragments;
 
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -32,6 +34,10 @@ public abstract class AbstractFragment extends Fragment implements AbstractPrese
     @Bind(R.id.progress_bar)
     ProgressBar progressBar;
 
+    private OnRetryListener retryListener;
+
+    private ProgressDialog progressDialog;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -45,6 +51,14 @@ public abstract class AbstractFragment extends Fragment implements AbstractPrese
         initViews(contentView);
 
         return loadingView;
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if(context instanceof OnRetryListener){
+            retryListener = (OnRetryListener) context;
+        }
     }
 
     @Override
@@ -68,7 +82,16 @@ public abstract class AbstractFragment extends Fragment implements AbstractPrese
      * This method can be redefined to handle retry operations.
      */
     protected void onLoadRetry(){
-        // To be redefined
+        if(retryListener != null){
+            retryListener.onRetry(getClass());
+        }
+    }
+
+    /**
+     * @param retryListener the retry listener this fragment must use
+     */
+    public void setRetryListener(OnRetryListener retryListener) {
+        this.retryListener = retryListener;
     }
 
     /**
@@ -100,5 +123,18 @@ public abstract class AbstractFragment extends Fragment implements AbstractPrese
     @OnClick(R.id.progress_retry_button)
     public void onRetryClicked(){
         onLoadRetry();
+    }
+
+    /**
+     * Defines a class listening to retry events, sended by the containing fragment.
+     */
+    public interface OnRetryListener{
+
+        /**
+         * Notify a retry event.
+         *
+         * @param fragmentOrigin the fragment from where the retry event come from
+         */
+        void onRetry(Class<? extends AbstractFragment> fragmentOrigin);
     }
 }

@@ -1,10 +1,11 @@
 package fr.enlight.henripotierbookshop.presentation.dependencies.modules;
 
-import java.util.List;
+import android.content.Context;
 
 import dagger.Module;
 import dagger.Provides;
 import fr.enlight.henripotierbookshop.presentation.model.BookCartModel;
+import fr.enlight.henripotierbookshop.presentation.presenter.BookCartPresenter;
 import fr.enlight.henripotierbookshop.presentation.presenter.BookCatalogPresenter;
 import fr.enlight.hpdata.hpbooks.BookstoreModel;
 import fr.enlight.hpdata.interactors.BookCatalogInteractor;
@@ -16,14 +17,14 @@ import fr.enlight.hpdata.interactors.CommercialOffersInteractor;
 @Module(includes = ApplicationModule.class)
 public class BooksModule {
 
-    private List<String> isbnBooks;
-
-    public BooksModule(){
-        // Default constructor
+    @Provides
+    BookstoreModel provideBookstoreModel(Context context){
+        return new BookstoreModel(context);
     }
 
-    public BooksModule(List<String> isbnBooks){
-        this.isbnBooks = isbnBooks;
+    @Provides
+    BookCartModel provideBookCartModel(){
+        return new BookCartModel();
     }
 
     @Provides
@@ -33,11 +34,16 @@ public class BooksModule {
 
     @Provides
     CommercialOffersInteractor provideCommercialOffers(BookstoreModel bookstoreModel){
-        return new CommercialOffersInteractor(bookstoreModel, isbnBooks);
+        return new CommercialOffersInteractor(bookstoreModel);
     }
 
     @Provides
     BookCatalogPresenter provideBookCatalogPresenter(BookCatalogInteractor interactor, BookCartModel cartModel){
         return new BookCatalogPresenter(interactor, cartModel);
+    }
+
+    @Provides
+    BookCartPresenter provideBookCartPresenter(CommercialOffersInteractor interactor, BookCartModel cartModel){
+        return new BookCartPresenter(interactor, cartModel);
     }
 }

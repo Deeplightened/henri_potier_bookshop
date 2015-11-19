@@ -1,15 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".BookCatalogActivity">
+    tools:context=".BookCartActivity">
 
     <include layout="@layout/toolbar"
         android:id="@+id/toolbar"/>
 
     <fragment
-        android:name="fr.enlight.henripotierbookshop.presentation.views.fragments.BookCatalogFragment"
-        android:id="@+id/fragment_book_catalog"
+        android:name="fr.enlight.henripotierbookshop.presentation.views.fragments.BookCartFragment"
+        android:id="@+id/fragment_book_cart"
         android:layout_below="@id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>

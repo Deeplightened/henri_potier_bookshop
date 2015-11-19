@@ -8,16 +8,19 @@ import rx.Observable;
 import rx.schedulers.Schedulers;
 
 /**
- * An Interactor used to
+ * An Interactor used to ask for a list of commercial offers.
  */
 public class CommercialOffersInteractor extends Interactor<HPBookCommercialOffers> {
 
-    private final List<String> isbnParameters;
+    private List<String> isbnParameters;
     private BookstoreModel bookstoreModel;
 
-    public CommercialOffersInteractor(BookstoreModel model, List<String> isbnParameters) {
+    public CommercialOffersInteractor(BookstoreModel model) {
         super(Schedulers.io());
         bookstoreModel = model;
+    }
+
+    public void setIsbnParameters(List<String> isbnParameters) {
         this.isbnParameters = isbnParameters;
     }
 

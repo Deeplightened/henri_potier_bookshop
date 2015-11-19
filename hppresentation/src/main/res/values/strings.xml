@@ -5,10 +5,24 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
 
+    <!--Book Catalog-->
     <string name="book_short_add_to_cart">Ajouter</string>
-    <string name="country_currency_placeholder">%1$s €</string>
-    <string name="retry_text">Réessayer</string>
+    <string name="book_short_added_to_cart">Ajouté</string>
     <string name="menu_cart">Panier</string>
+
+    <!--Prices-->
+    <string name="country_currency_placeholder">%1$s €</string>
+    <string name="percentage_placeholder">%1$s %</string>
+    <string name="percentage_reduction_message">Réduction globale sur les livres :</string>
+    <string name="minus_reduction_message">Réduction offerte sur le panier :</string>
+    <string name="slice_reduction_message_placeholder">Réduction offerte pour %1$s € d\'achat :</string>
+
+    <!--Error Messages-->
+    <string name="retry_text">Réessayer</string>
     <string name="error_message_network_failed">Une erreur est survenue pendant le téléchargement. Vérifiez si le réseau est disponible puis réessayer.</string>
+    <string name="book_cart_total_label">Total du panier :</string>
+    <string name="book_cart_tva_placeholder">*Dont TVA : %1$s €</string>
+    <string name="book_cart_validate">Valider le panier</string>
+
 
 </resources>

@@ -1,23 +1,24 @@
 package fr.enlight.henripotierbookshop.presentation.model;
 
-import fr.enlight.hpdata.hpbooks.entities.HPBookOffer;
-
 /**
  * An entity representing an offer to show in the user cart.
  */
 public class BookOffer {
 
-    private String offerMessage;
-    private String offerType;
-    private short reductionValue;
-    private short sliceValue;
+    public static final String PERCENTAGE_REDUCTION_TYPE = "PERCENTAGE_REDUCTION_TYPE";
+    public static final String MINUS_REDUCTION_TYPE = "MINUS_REDUCTION_TYPE";
 
-    public static BookOffer newInstance(String message, HPBookOffer offer) {
+    private String offerMessage;
+    private short reductionValue;
+    private String reductionMessage;
+    private String reductionType;
+
+    public static BookOffer newInstance(String message, String reductionMessage, short reductionValue, String reductionType) {
         BookOffer result = new BookOffer();
-        result.setOfferMessage(message);
-        result.setOfferType(offer.getType());
-        result.setReductionValue(offer.getValue());
-        result.setSliceValue(offer.getSliceValue());
+        result.offerMessage = message;
+        result.reductionValue = reductionValue;
+        result.reductionMessage = reductionMessage;
+        result.reductionType = reductionType;
         return result;
     }
 
@@ -29,14 +30,6 @@ public class BookOffer {
         this.offerMessage = offerMessage;
     }
 
-    public String getOfferType() {
-        return offerType;
-    }
-
-    public void setOfferType(String offerType) {
-        this.offerType = offerType;
-    }
-
     public short getReductionValue() {
         return reductionValue;
     }
@@ -45,11 +38,19 @@ public class BookOffer {
         this.reductionValue = reductionValue;
     }
 
-    public short getSliceValue() {
-        return sliceValue;
+    public String getReductionMessage() {
+        return reductionMessage;
     }
 
-    public void setSliceValue(short sliceValue) {
-        this.sliceValue = sliceValue;
+    public void setReductionMessage(String reductionMessage) {
+        this.reductionMessage = reductionMessage;
+    }
+
+    public String getReductionType() {
+        return reductionType;
+    }
+
+    public void setReductionType(String reductionType) {
+        this.reductionType = reductionType;
     }
 }

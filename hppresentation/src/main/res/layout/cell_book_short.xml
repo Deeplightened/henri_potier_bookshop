@@ -31,8 +31,7 @@
             android:layout_marginRight="@dimen/heavy_border_margin"
             android:drawableLeft="@drawable/add_cart"
             android:drawableStart="@drawable/add_cart"
-            android:drawablePadding="@dimen/padding_soft"
-            android:text="@string/book_short_add_to_cart" />
+            android:drawablePadding="@dimen/padding_soft" />
 
         <TextView
             android:id="@+id/book_price_textview"

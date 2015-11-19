@@ -15,13 +15,14 @@ import fr.enlight.henripotierbookshop.presentation.dependencies.components.Dagge
 import fr.enlight.henripotierbookshop.presentation.dependencies.modules.BooksModule;
 import fr.enlight.henripotierbookshop.presentation.model.Book;
 import fr.enlight.henripotierbookshop.presentation.presenter.BookCatalogPresenter;
+import fr.enlight.henripotierbookshop.presentation.views.fragments.AbstractFragment;
 import fr.enlight.henripotierbookshop.presentation.views.fragments.BookCatalogFragment;
 
 
 /**
  * Activity presenting the catalog of books available for this application.
  */
-public class BookCatalogActivity extends AbstractActivity implements BookCatalogFragment.OnBookCatalogInteractionListener {
+public class BookCatalogActivity extends AbstractActivity implements BookCatalogFragment.OnBookCatalogInteractionListener, AbstractFragment.OnRetryListener {
 
     @Bind(R.id.toolbar)
     Toolbar toolbar;
@@ -90,7 +91,7 @@ public class BookCatalogActivity extends AbstractActivity implements BookCatalog
     }
 
     @Override
-    public void onRetryBookLoading() {
+    public void onRetry(Class<? extends AbstractFragment> fragmentOrigin) {
         bookCatalogPresenter.updateBookCatalog();
     }
 }

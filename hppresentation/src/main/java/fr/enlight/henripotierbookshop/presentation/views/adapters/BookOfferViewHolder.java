@@ -18,7 +18,7 @@ import fr.enlight.henripotierbookshop.presentation.views.fragments.BookCatalogFr
 /**
  * A ViewHolder used to contains
  */
-public class BookShortViewHolder extends RecyclerView.ViewHolder {
+public class BookOfferViewHolder extends RecyclerView.ViewHolder {
 
     private final Context context;
 
@@ -37,7 +37,7 @@ public class BookShortViewHolder extends RecyclerView.ViewHolder {
     private BookCatalogFragment.OnBookCatalogInteractionListener interactionListener;
     private Book bookModel;
 
-    public BookShortViewHolder(Context context, View itemView) {
+    public BookOfferViewHolder(Context context, View itemView) {
         super(itemView);
         this.context = context;
         ButterKnife.bind(this, itemView);

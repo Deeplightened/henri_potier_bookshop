@@ -9,6 +9,7 @@ public class Book {
     private String coverImageUrl;
     private short price;
     private String isbn;
+    private boolean inCart = false;
 
     public static Book newInstance(String title, String cover, short price, String isbn) {
         Book book = new Book();
@@ -51,5 +52,12 @@ public class Book {
         this.isbn = isbn;
     }
 
+    public boolean isInCart() {
+        return inCart;
+    }
+
+    public void setInCart(boolean inCart) {
+        this.inCart = inCart;
+    }
 
 }

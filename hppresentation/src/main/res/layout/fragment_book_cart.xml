@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/book_cart_total_viewgroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true">
+
+        <TextView
+            style="@style/TitleTextView"
+            android:id="@+id/book_cart_total_label"
+            android:textStyle="italic"
+            android:text="@string/book_cart_total_label"/>
+
+        <TextView
+            style="@style/TitleTextView"
+            android:id="@+id/book_cart_total_textview"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="@dimen/heavy_border_margin"
+            android:layout_marginRight="@dimen/heavy_border_margin"
+            android:textStyle="italic|bold"
+            android:textSize="20sp"/>
+
+        <TextView
+            style="@style/SubTitleTextView"
+            android:id="@+id/book_cart_tva_textview"
+            android:layout_below="@id/book_cart_total_label"
+            android:layout_marginLeft="@dimen/heavy_border_margin"
+            android:layout_marginStart="@dimen/heavy_border_margin"
+            android:textStyle="italic"
+            android:text="@string/book_cart_tva_placeholder"/>
+
+        <TextView
+            style="@style/ConfirmButton"
+            android:id="@+id/book_cart_validate"
+            android:layout_below="@id/book_cart_tva_textview"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="@dimen/heavy_border_margin"
+            android:textStyle="bold"
+            android:text="@string/book_cart_validate"/>
+
+    </RelativeLayout>
+
+    <!-- Considering the number of books to show, a simple ListView
+     is sufficient here, the RecyclerView is defined here for demonstration
+     purpose only-->
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerview_book_cart"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="@dimen/light_border_margin"
+        android:layout_above="@id/book_cart_total_viewgroup"/>
+
+
+
+</RelativeLayout>

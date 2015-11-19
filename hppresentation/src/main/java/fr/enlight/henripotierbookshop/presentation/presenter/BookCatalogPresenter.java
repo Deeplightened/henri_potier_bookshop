@@ -1,8 +1,6 @@
 package fr.enlight.henripotierbookshop.presentation.presenter;
 
 import android.content.Context;
-import android.os.Handler;
-import android.os.Looper;
 import android.util.Log;
 
 import java.util.ArrayList;
@@ -24,8 +22,6 @@ public class BookCatalogPresenter implements AbstractPresenter {
     private final BookCartModel bookCartModel;
 
     private BookCatalogPresentableView presentableView;
-
-    private final Handler handler = new Handler(Looper.getMainLooper());
 
     public BookCatalogPresenter(BookCatalogInteractor interactor, BookCartModel bookCartModel){
         this.interactor = interactor;

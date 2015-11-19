@@ -8,7 +8,7 @@ import rx.Observable;
 import rx.schedulers.Schedulers;
 
 /**
- * Created by yhuriez on 16/11/2015.
+ * An Interactor used to ask for a list of books.
  */
 public class BookCatalogInteractor extends Interactor<List<HPBook>> {
 

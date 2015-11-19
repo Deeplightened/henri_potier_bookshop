@@ -15,4 +15,8 @@
     <dimen name="heavy_border_margin">10dp</dimen>
 
     <dimen name="book_cover_height">250dp</dimen>
+
+    <dimen name="error_message_size">16sp</dimen>
+    <dimen name="title_size">16sp</dimen>
+    <dimen name="subtitle_size">12sp</dimen>
 </resources>
