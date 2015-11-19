@@ -4,8 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuItem;
 
 import javax.inject.Inject;
 
@@ -15,6 +13,7 @@ import fr.enlight.henripotierbookshop.R;
 import fr.enlight.henripotierbookshop.presentation.dependencies.components.BooksComponent;
 import fr.enlight.henripotierbookshop.presentation.dependencies.components.DaggerBooksComponent;
 import fr.enlight.henripotierbookshop.presentation.dependencies.modules.BooksModule;
+import fr.enlight.henripotierbookshop.presentation.model.Book;
 import fr.enlight.henripotierbookshop.presentation.presenter.BookCartPresenter;
 import fr.enlight.henripotierbookshop.presentation.views.fragments.AbstractFragment;
 import fr.enlight.henripotierbookshop.presentation.views.fragments.BookCartFragment;
@@ -81,30 +80,17 @@ public class BookCartActivity extends AbstractActivity implements BookCartFragme
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_book_cart, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-        // TODO
-
-//        if(item.getItemId() == R.id.menu_cart_previous){
-//            // On cart icon clicked, we redirect to the BookCartActivity
-//            navigationManager.startBookCartActivity(this);
-//        }
-        return super.onOptionsItemSelected(item);
-    }
-
-    @Override
     public void onRetry(Class<? extends AbstractFragment> fragmentOrigin) {
-
+        // TODO
     }
 
     @Override
     public void onValidateCart() {
+        // TODO
+    }
 
+    @Override
+    public void onDeleteBookItem(Book bookItem) {
+        bookCartPresenter.deleteBookItem(bookItem);
     }
 }

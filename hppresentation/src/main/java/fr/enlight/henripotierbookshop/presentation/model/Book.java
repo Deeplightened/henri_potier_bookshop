@@ -1,7 +1,7 @@
 package fr.enlight.henripotierbookshop.presentation.model;
 
 /**
- * Created by yhuriez on 17/11/2015.
+ * An entity representing a book.
  */
 public class Book {
 
@@ -60,4 +60,24 @@ public class Book {
         this.inCart = inCart;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Book book = (Book) o;
+
+        if (price != book.price) return false;
+        if (title != null ? !title.equals(book.title) : book.title != null) return false;
+        return !(isbn != null ? !isbn.equals(book.isbn) : book.isbn != null);
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = title != null ? title.hashCode() : 0;
+        result = 71 * result + (int) price;
+        result = 51 * result + (isbn != null ? isbn.hashCode() : 0);
+        return result;
+    }
 }

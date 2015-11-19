@@ -53,4 +53,26 @@ public class BookOffer {
     public void setReductionType(String reductionType) {
         this.reductionType = reductionType;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        BookOffer bookOffer = (BookOffer) o;
+
+        if (reductionValue != bookOffer.reductionValue) return false;
+        if (offerMessage != null ? !offerMessage.equals(bookOffer.offerMessage) : bookOffer.offerMessage != null)
+            return false;
+        return !(reductionMessage != null ? !reductionMessage.equals(bookOffer.reductionMessage) : bookOffer.reductionMessage != null);
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = offerMessage != null ? offerMessage.hashCode() : 0;
+        result = 31 * result + (int) reductionValue;
+        result = 31 * result + (reductionMessage != null ? reductionMessage.hashCode() : 0);
+        return result;
+    }
 }

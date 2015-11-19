@@ -37,11 +37,11 @@
     </style>
 
     <style name="AddToCartButton" parent="ConfirmButton">
-        <item name="android:text">@string/book_short_add_to_cart</item>
+        <item name="android:text">@string/book_catalog_add_to_cart</item>
     </style>
 
     <style name="AddedToCartButton" parent="ConfirmButton">
-        <item name="android:text">@string/book_short_added_to_cart</item>
+        <item name="android:text">@string/book_catalog_added_to_cart</item>
         <item name="android:background">@color/button_added_to_cart_background</item>
     </style>
 

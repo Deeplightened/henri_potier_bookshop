@@ -17,12 +17,12 @@
 
         <TextView
             style="@style/TitleTextView"
-            android:id="@+id/book_cart_total_textview"
+            android:id="@+id/book_cart_total_value"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="@dimen/heavy_border_margin"
             android:layout_marginRight="@dimen/heavy_border_margin"
-            android:textStyle="italic|bold"
+            android:textStyle="bold"
             android:textSize="20sp"/>
 
         <TextView
@@ -53,7 +53,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="@dimen/light_border_margin"
+        android:layout_margin="@dimen/light_border_margin"
         android:layout_above="@id/book_cart_total_viewgroup"/>
 
 

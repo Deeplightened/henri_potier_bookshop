@@ -98,7 +98,25 @@ public class BookCartModel {
         this.offerList = offerList;
     }
 
-
-
     // endregion
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        BookCartModel that = (BookCartModel) o;
+
+        if (!listBooks.equals(that.listBooks)) return false;
+        return !(offerList != null ? !offerList.equals(that.offerList) : that.offerList != null);
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = listBooks.hashCode();
+        result = 71 * result + (offerList != null ? offerList.hashCode() : 0);
+        return result;
+    }
 }

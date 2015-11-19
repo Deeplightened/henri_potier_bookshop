@@ -13,7 +13,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import fr.enlight.henripotierbookshop.R;
 import fr.enlight.henripotierbookshop.presentation.model.Book;
-import fr.enlight.henripotierbookshop.presentation.views.fragments.BookCatalogFragment;
+import fr.enlight.henripotierbookshop.presentation.views.fragments.BookCartFragment;
 
 /**
  * A ViewHolder used to contains
@@ -22,19 +22,19 @@ public class BookCartItemViewHolder extends RecyclerView.ViewHolder {
 
     private final Context context;
 
-    @Bind(R.id.book_title_textview)
+    @Bind(R.id.book_cart_item_title)
     TextView titleTextView;
 
-    @Bind(R.id.book_price_textview)
+    @Bind(R.id.book_cart_item_isbn)
+    TextView isbnTextView;
+
+    @Bind(R.id.book_cart_item_price)
     TextView priceTextView;
 
-    @Bind(R.id.book_cover_imageview)
+    @Bind(R.id.book_cart_item_cover)
     ImageView coverImageView;
 
-    @Bind(R.id.book_add_to_cart_button)
-    TextView addToCartButton;
-
-    private BookCatalogFragment.OnBookCatalogInteractionListener interactionListener;
+    private BookCartFragment.OnBookCartInteractionListener interactionListener;
     private Book bookModel;
 
     public BookCartItemViewHolder(Context context, View itemView) {
@@ -43,52 +43,43 @@ public class BookCartItemViewHolder extends RecyclerView.ViewHolder {
         ButterKnife.bind(this, itemView);
     }
 
-    public void setBook(Book book){
-        if(book != null){
+    public void setBook(Book book) {
+        if (book != null) {
 
             bookModel = book;
 
             String title = book.getTitle();
+            String isbn = book.getIsbn();
             short price = book.getPrice();
             String coverImageUrl = book.getCoverImageUrl();
 
-            if(title != null){
+            if (title != null) {
                 titleTextView.setText(title);
             }
-            if(price > 0){
+            if (price > 0) {
                 priceTextView.setText(context.getString(R.string.country_currency_placeholder, price));
             }
+            if (isbn != null) {
+                isbnTextView.setText(context.getString(R.string.book_cart_isbn_placeholder, isbn));
+            }
 
-            if(coverImageUrl != null){
+            if (coverImageUrl != null) {
                 Picasso.with(context)
                         .load(coverImageUrl)
                         .fit()
                         .into(coverImageView);
             }
-
-            updateCartButton();
         }
     }
 
-    @OnClick(R.id.book_add_to_cart_button)
-    public void onAddToCartClicked(){
-        if(interactionListener != null){
-            interactionListener.onAddToCartSelected(bookModel);
-            bookModel.setInCart(true);
-            updateCartButton();
+    @OnClick(R.id.book_cart_item_delete)
+    public void onDeleteItemClicked() {
+        if (interactionListener != null) {
+            interactionListener.onDeleteBookItem(bookModel);
         }
     }
 
-    private void updateCartButton() {
-        if(bookModel.isInCart()){
-            addToCartButton.setEnabled(false);
-
-            //noinspection deprecation
-            addToCartButton.setTextAppearance(context, R.style.AddedToCartButton);
-        }
-    }
-
-    public void setInteractionListener(BookCatalogFragment.OnBookCatalogInteractionListener interactionListener) {
+    public void setInteractionListener(BookCartFragment.OnBookCartInteractionListener interactionListener) {
         this.interactionListener = interactionListener;
     }
 }

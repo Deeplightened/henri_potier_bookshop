@@ -91,4 +91,5 @@ public class BookShortViewHolder extends RecyclerView.ViewHolder {
     public void setInteractionListener(BookCatalogFragment.OnBookCatalogInteractionListener interactionListener) {
         this.interactionListener = interactionListener;
     }
+
 }

@@ -47,6 +47,7 @@ public class BookCartPresenter implements AbstractPresenter {
     @Override
     public void create() {
         loadCartContent();
+        loadCommercialOffers();
     }
 
     @Override
@@ -145,6 +146,15 @@ public class BookCartPresenter implements AbstractPresenter {
         }
 
         return BookOffer.newInstance(offerMessage, reductionMessage, bookOffer.getValue(), reductionType);
+    }
+
+    /**
+     * Delete a book item from the cart, then update the PresentableView
+     * @param bookItem the book item to delete
+     */
+    public void deleteBookItem(Book bookItem) {
+        bookCartModel.removeBook(bookItem);
+        presentableView.updateCartContent(bookCartModel.getListBooks());
     }
 
     /**

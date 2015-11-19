@@ -10,15 +10,19 @@ import java.util.List;
 
 import fr.enlight.henripotierbookshop.R;
 import fr.enlight.henripotierbookshop.presentation.model.Book;
+import fr.enlight.henripotierbookshop.presentation.model.BookOffer;
 import fr.enlight.henripotierbookshop.presentation.views.fragments.BookCartFragment;
 
 /**
  * An adapter to presents a list of Book
  */
-public class BookCartAdapter extends RecyclerView.Adapter<BookShortViewHolder>{
+public class BookCartAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
     private final Context context;
-    private List<Book> bookList;
+
+    private List<Book> bookItemList;
+    private List<BookOffer> bookOfferList;
+
     private BookCartFragment.OnBookCartInteractionListener interactionListener;
 
     public BookCartAdapter(Context context){
@@ -26,30 +30,67 @@ public class BookCartAdapter extends RecyclerView.Adapter<BookShortViewHolder>{
     }
 
     @Override
-    public BookShortViewHolder onCreateViewHolder(ViewGroup viewGroup, int position) {
-        View itemView = LayoutInflater.from(context)
-                .inflate(R.layout.cell_book_short, viewGroup, false);
-        return new BookShortViewHolder(context, itemView);
+    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int position) {
+        if(isBookItemPosition(position)) {
+            View itemView = LayoutInflater.from(context)
+                    .inflate(R.layout.cell_book_short, viewGroup, false);
+            return new BookCartItemViewHolder(context, itemView);
+        } else if(isBookOfferPosition(position)){
+            View itemView = LayoutInflater.from(context)
+                    .inflate(R.layout.cell_book_short, viewGroup, false);
+            return new BookOfferViewHolder(context, itemView);
+        } else {
+            throw new IllegalStateException("The data list doesn't match the given item count");
+        }
     }
 
     @Override
-    public void onBindViewHolder(BookShortViewHolder bookShortViewHolder, int position) {
-        if(bookList != null){
-            bookShortViewHolder.setBook(bookList.get(position));
-//            bookShortViewHolder.setInteractionListener(interactionListener);
+    public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int position) {
+        if(viewHolder instanceof BookCartItemViewHolder){
+            if (bookItemList != null) {
+                BookCartItemViewHolder bookCartHolder = (BookCartItemViewHolder) viewHolder;
+                bookCartHolder.setBook(bookItemList.get(position));
+                bookCartHolder.setInteractionListener(interactionListener);
+            }
+        } else if(viewHolder instanceof BookOfferViewHolder) {
+            if (bookOfferList != null) {
+                ((BookOfferViewHolder) viewHolder).setBookOffer(bookOfferList.get(position));
+            }
         }
+    }
+
+    private boolean isBookItemPosition(int position){
+        return position < bookItemList.size();
+    }
+
+    private boolean isBookOfferPosition(int position){
+        return position >= bookItemList.size() && position < bookOfferList.size();
     }
 
     @Override
     public int getItemCount() {
-        if(bookList == null){
-            return 0;
+        int itemCount = 0;
+        if(bookItemList != null){
+            itemCount += bookItemList.size();
         }
-        return bookList.size();
+        if (bookOfferList != null) {
+            itemCount += bookOfferList.size();
+        }
+        return itemCount;
     }
 
-    public void updateBookList(List<Book> newBooks){
-        bookList = newBooks;
+    /**
+     * @param bookItemList the book list updated
+     */
+    public void updateBookItemList(List<Book> bookItemList) {
+        this.bookItemList = bookItemList;
+    }
+
+    /**
+     * @param bookOfferList the list of offers updated
+     */
+    public void updateBookOfferList(List<BookOffer> bookOfferList) {
+        this.bookOfferList = bookOfferList;
     }
 
     /**
