@@ -71,8 +71,16 @@ public class BookCartPresenter implements AbstractPresenter {
             isbnList.add(book.getIsbn());
         }
 
-        interactor.setIsbnParameters(isbnList);
-        interactor.execute(new BookCartSubscriber());
+        if(isbnList.isEmpty()){
+            // If no ISBN, we presents the view with empty model
+            presentableView.updateCartContent(new ArrayList<Book>(), new ArrayList<BookOffer>());
+            presentableView.hideLoadingView();
+
+        } else {
+            // Else we call for commercial offers
+            interactor.setIsbnParameters(isbnList);
+            interactor.execute(new BookCartSubscriber());
+        }
     }
 
     /**
@@ -150,6 +158,9 @@ public class BookCartPresenter implements AbstractPresenter {
         presentableView.updateCartTotalPrice(total, tva);
     }
 
+    /**
+     * @return the TVA percentage
+     */
     public float getTvaPercentage() {
         if(tvaPercentage < 0){
             Context context = presentableView.getContext();
@@ -161,12 +172,14 @@ public class BookCartPresenter implements AbstractPresenter {
     }
 
     /**
-     * Delete a book item from the cart, then update the PresentableView
+     * Delete a book item from the cart, then recalculate the commercial offers and
+     * update the PresentableView.
+     *
      * @param bookItem the book item to delete
      */
     public void deleteBookItem(Book bookItem) {
         bookCartModel.removeBook(bookItem);
-        notifyCartUpdated();
+        loadCartContent();
     }
 
     /**

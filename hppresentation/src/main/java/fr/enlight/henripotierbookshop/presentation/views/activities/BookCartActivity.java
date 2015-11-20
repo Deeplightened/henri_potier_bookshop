@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 
 import javax.inject.Inject;
 
@@ -63,11 +64,23 @@ public class BookCartActivity extends AbstractActivity implements BookCartFragme
 
     private void initActivity() {
         // Action bar
+        toolbar.setTitle(getString(R.string.book_cart_toolbar_title));
+        toolbar.setNavigationIcon(R.drawable.back_arrow);
+
         setSupportActionBar(toolbar);
 
         bookCartFragment = (BookCartFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_book_cart);
 
         bookCartPresenter.setPresentableView(bookCartFragment);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(item.getItemId() == android.R.id.home){
+            onBackPressed();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override

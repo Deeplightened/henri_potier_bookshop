@@ -21,6 +21,8 @@ public class BookCatalogPresenter implements AbstractPresenter {
     private final BookCatalogInteractor interactor;
     private final BookCartModel bookCartModel;
 
+    private List<Book> bookModel;
+
     private BookCatalogPresentableView presentableView;
 
     public BookCatalogPresenter(BookCatalogInteractor interactor, BookCartModel bookCartModel){
@@ -34,7 +36,12 @@ public class BookCatalogPresenter implements AbstractPresenter {
 
     @Override
     public void resume() {
-        // Nothing to do
+        // We update the book list in function of there presence in the cart
+        if(bookModel != null) {
+            for (Book book : bookModel) {
+                book.setInCart(bookCartModel.containsBook(book));
+            }
+        }
     }
 
     @Override
@@ -84,6 +91,7 @@ public class BookCatalogPresenter implements AbstractPresenter {
     public void addToCart(Book book) {
         if(book != null && !bookCartModel.containsBook(book)){
             bookCartModel.addBook(book);
+            // If the book has been added to cart, we notify the update of this book
         }
     }
 
@@ -106,8 +114,8 @@ public class BookCatalogPresenter implements AbstractPresenter {
 
         @Override
         public void onNext(List<HPBook> hpBooks) {
-            List<Book> books = convertHPBooks(hpBooks);
-            presentableView.updateBookCatalog(books);
+            bookModel = convertHPBooks(hpBooks);
+            presentableView.updateBookCatalog(bookModel);
             presentableView.hideLoadingView();
             Log.i(getClass().getSimpleName(), "Book received : " + hpBooks.toString());
         }

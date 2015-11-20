@@ -1,29 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background">
+    android:orientation="horizontal" >
 
     <include layout="@layout/view_book_cart_empty"
         android:id="@+id/book_cart_empty_viewgroup"
         android:layout_height="match_parent"
         android:layout_width="match_parent" />
 
-    <include layout="@layout/view_book_cart_total"
-        android:id="@+id/book_cart_total_viewgroup"
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent"
-        android:layout_alignParentBottom="true" />
-
     <!-- Considering the number of books to show, a simple ListView
      is sufficient here, the RecyclerView is defined here for demonstration
      purpose only-->
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerview_book_cart"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_above="@id/book_cart_total_viewgroup"
-        android:layout_alignParentTop="true"
-        android:layout_margin="@dimen/light_border_margin" />
+        android:layout_weight="0.6"
+        android:background="@drawable/background"/>
 
-</RelativeLayout>
+    <include layout="@layout/view_book_cart_total"
+        android:id="@+id/book_cart_total_viewgroup"
+        android:layout_height="match_parent"
+        android:layout_width="0dp"
+        android:layout_weight="0.4"/>
+
+</LinearLayout>

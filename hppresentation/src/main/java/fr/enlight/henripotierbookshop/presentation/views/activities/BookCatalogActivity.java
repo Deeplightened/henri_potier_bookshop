@@ -50,13 +50,29 @@ public class BookCatalogActivity extends AbstractActivity implements BookCatalog
         bookCatalogComponent.inject(this);
     }
 
+    @SuppressWarnings("ConstantConditions")
     private void initActivity() {
         // Action bar
+        toolbar.setTitle(getString(R.string.book_catalog_toolbar_title));
+        toolbar.setNavigationIcon(R.drawable.ic_launcher);
         setSupportActionBar(toolbar);
+
 
         bookCatalogFragment = (BookCatalogFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_book_catalog);
 
         bookCatalogPresenter.setPresentableView(bookCatalogFragment);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        bookCatalogPresenter.resume();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        bookCatalogPresenter.pause();
     }
 
     @Override

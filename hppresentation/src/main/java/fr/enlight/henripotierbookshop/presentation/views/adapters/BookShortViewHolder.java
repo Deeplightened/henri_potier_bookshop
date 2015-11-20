@@ -83,8 +83,8 @@ public class BookShortViewHolder extends RecyclerView.ViewHolder {
         if(bookModel.isInCart()){
             addToCartButton.setEnabled(false);
 
-            //noinspection deprecation
-            addToCartButton.setTextAppearance(context, R.style.AddedToCartButton);
+            // Change text of the button
+            addToCartButton.setText(context.getString(R.string.book_catalog_added_to_cart));
         }
     }
 

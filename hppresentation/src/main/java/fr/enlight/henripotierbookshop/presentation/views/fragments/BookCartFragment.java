@@ -1,5 +1,6 @@
 package fr.enlight.henripotierbookshop.presentation.views.fragments;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
@@ -33,17 +34,29 @@ public class BookCartFragment extends AbstractFragment implements BookCartPresen
     @Bind(R.id.recyclerview_book_cart)
     RecyclerView recyclerView;
 
+    @Bind(R.id.book_cart_total_viewgroup)
+    ViewGroup totalViewGroup;
+
     @Bind(R.id.book_cart_total_value)
     TextView totalValueTextView;
 
     @Bind(R.id.book_cart_tva_textview)
     TextView tvaTextView;
 
+    @Bind(R.id.book_cart_empty_viewgroup)
+    ViewGroup emptyViewGroup;
+
     @Bind(R.id.book_cart_total_offer_viewgroup)
     ViewGroup offerListViewGroup;
 
-
+    // Book adapter
     BookCartAdapter bookCartAdapter;
+
+    // Progress dialog for loading after first one
+    ProgressDialog progressDialog;
+
+    // A boolean determining if the asked loading is the first one or not
+    boolean firstLoading = true;
 
     @Override
     protected int getLayoutInflateId() {
@@ -84,10 +97,35 @@ public class BookCartFragment extends AbstractFragment implements BookCartPresen
 
     @Override
     public void updateCartContent(List<Book> cartBooks, List<BookOffer> bookOffers) {
-        bookCartAdapter.updateCartItemList(cartBooks);
-        bookCartAdapter.notifyDataSetChanged();
+        if(cartBooks.isEmpty() || bookOffers.isEmpty()){
+            showEmptyView();
 
-        updateBookOffersViews(bookOffers);
+        } else {
+            hideEmptyView();
+
+            bookCartAdapter.updateCartItemList(cartBooks);
+            bookCartAdapter.notifyDataSetChanged();
+
+            updateBookOffersViews(bookOffers);
+        }
+    }
+
+    /**
+     * Show an information panel to inform the user his cart is empty.
+     */
+    private void showEmptyView() {
+        totalViewGroup.setVisibility(View.GONE);
+        recyclerView.setVisibility(View.GONE);
+        emptyViewGroup.setVisibility(View.VISIBLE);
+    }
+
+    /**
+     * Hide the cart empty information panel and show the other view group.
+     */
+    private void hideEmptyView() {
+        emptyViewGroup.setVisibility(View.GONE);
+        totalViewGroup.setVisibility(View.VISIBLE);
+        recyclerView.setVisibility(View.VISIBLE);
     }
 
     /**
@@ -123,6 +161,39 @@ public class BookCartFragment extends AbstractFragment implements BookCartPresen
         // Set TVA
         String formattedTva = numberFormat.format(tva);
         tvaTextView.setText(getString(R.string.book_cart_tva_placeholder, formattedTva));
+    }
+
+    @Override
+    public void showLoadingView() {
+        if(firstLoading){
+            super.showLoadingView();
+        } else {
+            if(progressDialog == null || !progressDialog.isShowing()) {
+                progressDialog = ProgressDialog.show(getActivity(), "", getString(R.string.loading_message_dialog), false, false, null);
+            }
+        }
+    }
+
+    @Override
+    public void hideLoadingView() {
+        if(firstLoading){
+            super.hideLoadingView();
+            firstLoading = false;
+        } else {
+            if(progressDialog != null && progressDialog.isShowing()) {
+                progressDialog.dismiss();
+                progressDialog = null;
+            }
+        }
+    }
+
+    @Override
+    public void onLoadingFailed(String errorMessage) {
+        if(progressDialog != null && progressDialog.isShowing()) {
+            progressDialog.dismiss();
+            progressDialog = null;
+        }
+        super.onLoadingFailed(errorMessage);
     }
 
     /**
