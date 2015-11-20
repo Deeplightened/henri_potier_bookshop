@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="BookHorizontalImageView" parent="AppTheme">
+        <item name="android:layout_height">@dimen/book_cover_height_cart_item</item>
+        <item name="android:layout_width">match_parent</item>
+    </style>
+
+    <style name="BookVerticalImageView" parent="AppTheme">
+        <item name="android:layout_height">@dimen/book_cover_height_catalog</item>
+        <item name="android:layout_width">@dimen/book_cover_width_catalog</item>
+    </style>
+</resources>

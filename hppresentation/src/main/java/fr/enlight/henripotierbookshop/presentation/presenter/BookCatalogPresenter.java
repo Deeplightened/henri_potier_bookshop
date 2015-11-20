@@ -96,6 +96,13 @@ public class BookCatalogPresenter implements AbstractPresenter {
     }
 
     /**
+     * @return the number of books in cart
+     */
+    public int getBookCartSize() {
+        return bookCartModel.bookListSize();
+    }
+
+    /**
      * A Subscriber used to retrieve the list of HPBook from data, using the BookCatalogInteractor.
      */
     public final class BookCatalogSubscriber extends Subscriber<List<HPBook>>{

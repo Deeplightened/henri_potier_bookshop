@@ -58,4 +58,14 @@
         <item name="android:text">@string/retry_text</item>
     </style>
 
+    <style name="BookHorizontalImageView" parent="AppTheme">
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_width">@dimen/book_cover_width_cart_item</item>
+    </style>
+
+    <style name="BookVerticalImageView" parent="AppTheme">
+        <item name="android:layout_height">@dimen/book_cover_height_catalog</item>
+        <item name="android:layout_width">match_parent</item>
+    </style>
+
 </resources>

@@ -8,8 +8,7 @@
 
     <ImageView
         android:id="@+id/book_cover_imageview"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/book_cover_height_catalog" />
+        style="@style/BookVerticalImageView"/>
 
     <TextView
         android:id="@+id/book_title_textview"

@@ -57,7 +57,6 @@ public class BookCatalogActivity extends AbstractActivity implements BookCatalog
         toolbar.setNavigationIcon(R.drawable.ic_launcher);
         setSupportActionBar(toolbar);
 
-
         bookCatalogFragment = (BookCatalogFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_book_catalog);
 
         bookCatalogPresenter.setPresentableView(bookCatalogFragment);
@@ -99,6 +98,9 @@ public class BookCatalogActivity extends AbstractActivity implements BookCatalog
     @Override
     public void onAddToCartSelected(Book book) {
         bookCatalogPresenter.addToCart(book);
+        if(bookCatalogPresenter.getBookCartSize() > 0){
+            // TODO invalidateOptionsMenu();
+        }
     }
 
     @Override

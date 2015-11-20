@@ -13,8 +13,7 @@
 
         <ImageView
             android:id="@+id/book_cart_item_cover"
-            android:layout_width="@dimen/book_cover_height_cart_item"
-            android:layout_height="match_parent"
+            style="@style/BookHorizontalImageView"
             android:layout_margin="@dimen/light_border_margin"/>
 
         <RelativeLayout
