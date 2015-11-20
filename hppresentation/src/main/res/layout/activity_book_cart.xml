@@ -5,14 +5,15 @@
     android:layout_height="match_parent"
     tools:context=".BookCartActivity">
 
-    <include layout="@layout/toolbar"
-        android:id="@+id/toolbar"/>
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar" />
 
     <fragment
-        android:name="fr.enlight.henripotierbookshop.presentation.views.fragments.BookCartFragment"
         android:id="@+id/fragment_book_cart"
-        android:layout_below="@id/toolbar"
+        android:name="fr.enlight.henripotierbookshop.presentation.views.fragments.BookCartFragment"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:layout_below="@id/toolbar" />
 
 </RelativeLayout>

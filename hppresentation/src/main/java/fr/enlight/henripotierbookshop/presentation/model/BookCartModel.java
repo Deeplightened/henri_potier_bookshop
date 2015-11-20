@@ -54,7 +54,7 @@ public class BookCartModel {
         }
         // We calculate percentage first
         if(percentageReduction > 0 && percentageReduction <= 100){
-            result = rawTotal - (percentageReduction * 100 / rawTotal);
+            result = rawTotal - (percentageReduction * rawTotal / 100);
         }
         // Then minus reduction
         if(minusReduction > 0){
@@ -121,5 +121,9 @@ public class BookCartModel {
         int result = listBooks.hashCode();
         result = 71 * result + (offerList != null ? offerList.hashCode() : 0);
         return result;
+    }
+
+    public int bookListSize() {
+        return listBooks.size();
     }
 }

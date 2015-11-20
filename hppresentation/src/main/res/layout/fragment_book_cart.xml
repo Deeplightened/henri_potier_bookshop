@@ -9,41 +9,52 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true">
 
-        <TextView
-            style="@style/TitleTextView"
-            android:id="@+id/book_cart_total_label"
-            android:textStyle="italic"
-            android:text="@string/book_cart_total_label"/>
+        <LinearLayout
+            android:id="@+id/book_cart_total_offer_viewgroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:animateLayoutChanges="true"
+            android:orientation="vertical" />
 
         <TextView
+            android:id="@+id/book_cart_total_label"
             style="@style/TitleTextView"
+            android:layout_below="@id/book_cart_total_offer_viewgroup"
+            android:text="@string/book_cart_total_label"
+            android:textStyle="italic" />
+
+        <TextView
             android:id="@+id/book_cart_total_value"
-            android:layout_alignParentRight="true"
+            style="@style/TitleTextView"
             android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_below="@id/book_cart_total_offer_viewgroup"
             android:layout_marginEnd="@dimen/heavy_border_margin"
             android:layout_marginRight="@dimen/heavy_border_margin"
-            android:textStyle="bold"
-            android:textSize="20sp"/>
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
         <TextView
-            style="@style/SubTitleTextView"
             android:id="@+id/book_cart_tva_textview"
+            style="@style/SubTitleTextView"
             android:layout_below="@id/book_cart_total_label"
             android:layout_marginLeft="@dimen/heavy_border_margin"
             android:layout_marginStart="@dimen/heavy_border_margin"
-            android:textStyle="italic"
-            android:text="@string/book_cart_tva_placeholder"/>
+            android:text="@string/book_cart_tva_placeholder"
+            android:textStyle="italic" />
 
         <TextView
-            style="@style/ConfirmButton"
             android:id="@+id/book_cart_validate"
+            style="@style/ConfirmButton"
             android:layout_below="@id/book_cart_tva_textview"
             android:layout_centerHorizontal="true"
             android:layout_margin="@dimen/heavy_border_margin"
-            android:textStyle="bold"
-            android:text="@string/book_cart_validate"/>
+            android:text="@string/book_cart_validate"
+            android:textStyle="bold" />
 
     </RelativeLayout>
+
 
     <!-- Considering the number of books to show, a simple ListView
      is sufficient here, the RecyclerView is defined here for demonstration
@@ -52,10 +63,9 @@
         android:id="@+id/recyclerview_book_cart"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_above="@id/book_cart_total_viewgroup"
         android:layout_alignParentTop="true"
-        android:layout_margin="@dimen/light_border_margin"
-        android:layout_above="@id/book_cart_total_viewgroup"/>
-
+        android:layout_margin="@dimen/light_border_margin" />
 
 
 </RelativeLayout>

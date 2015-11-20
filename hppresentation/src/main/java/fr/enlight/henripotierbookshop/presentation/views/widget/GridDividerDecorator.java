@@ -26,12 +26,12 @@ import fr.enlight.henripotierbookshop.R;
  * Adds spacing in between items in a grid. Meaning, there will be no margin added at the outer
  * edges of the grid.
  */
-public class GridInsetDecoration extends RecyclerView.ItemDecoration {
+public class GridDividerDecorator extends RecyclerView.ItemDecoration {
 
     private int insetHorizontal;
     private int insetVertical;
 
-    public GridInsetDecoration(Context context) {
+    public GridDividerDecorator(Context context) {
         insetHorizontal = context.getResources()
                 .getDimensionPixelSize(R.dimen.grid_horizontal_spacing);
         insetVertical = context.getResources()

@@ -1,8 +1,10 @@
 package fr.enlight.henripotierbookshop.presentation.views.activities;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.widget.Toolbar;
 
 import javax.inject.Inject;
@@ -76,12 +78,35 @@ public class BookCartActivity extends AbstractActivity implements BookCartFragme
 
     @Override
     public void onRetry(Class<? extends AbstractFragment> fragmentOrigin) {
-        // TODO
+        bookCartPresenter.loadCartContent();
     }
 
     @Override
     public void onValidateCart() {
-        // TODO
+        int bookCount = bookCartPresenter.getCartBookCount();
+        String messageDialog = getResources().getQuantityString(R.plurals.confirm_cart_message_dialog, bookCount, bookCount);
+
+        showMessageCancelableDialog(getString(R.string.confirm_cart_title_dialog), messageDialog, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                bookCartPresenter.clearCart();
+
+                bookCartFragment.showLoadingView();
+
+                // PLEASE READ : this operation is made only to simulate
+                // an operation behind validation (the application "faking" a
+                // book store)
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        String dialogTitle = getString(R.string.validated_cart_title_dialog);
+                        String dialogMessage = getString(R.string.validated_cart_message_dialog);
+
+                        navigationManager.finishActivityWithDialogResult(BookCartActivity.this, dialogTitle, dialogMessage, null);
+                    }
+                }, 3000);
+            }
+        });
     }
 
     @Override

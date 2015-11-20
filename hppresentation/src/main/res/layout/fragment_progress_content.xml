@@ -20,8 +20,8 @@
             <TextView
                 android:id="@+id/progress_error_textview"
                 style="@style/BaseTextView"
-                android:textColor="@android:color/black"
-                android:layout_width="250dp" />
+                android:layout_width="250dp"
+                android:textColor="@android:color/black" />
 
             <Button
                 android:id="@+id/progress_retry_button"
@@ -35,8 +35,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:visibility="visible"
-            android:indeterminate="true" />
+            android:indeterminate="true"
+            android:visibility="visible" />
 
     </RelativeLayout>
 

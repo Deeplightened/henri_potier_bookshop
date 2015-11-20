@@ -11,7 +11,7 @@ import butterknife.Bind;
 import fr.enlight.henripotierbookshop.R;
 import fr.enlight.henripotierbookshop.presentation.model.Book;
 import fr.enlight.henripotierbookshop.presentation.presenter.BookCatalogPresenter;
-import fr.enlight.henripotierbookshop.presentation.views.widget.GridInsetDecoration;
+import fr.enlight.henripotierbookshop.presentation.views.widget.GridDividerDecorator;
 import fr.enlight.henripotierbookshop.presentation.views.adapters.BookCatalogAdapter;
 
 /**
@@ -36,7 +36,7 @@ public class BookCatalogFragment extends AbstractFragment implements BookCatalog
     protected void initViews(View view) {
         Context context = getActivity();
 
-        recyclerView.addItemDecoration(new GridInsetDecoration(context));
+        recyclerView.addItemDecoration(new GridDividerDecorator(context));
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new GridLayoutManager(context, getResources().getInteger(R.integer.grid_layout_span)));
 

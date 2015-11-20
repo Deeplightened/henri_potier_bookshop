@@ -1,58 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    card_view:cardCornerRadius="4dp"
     android:layout_width="match_parent"
-    android:layout_height="200dp"
-    android:orientation="vertical">
+    android:layout_height="200dp">
 
-    <ImageView
-        android:id="@+id/book_cart_item_cover"
-        android:layout_height="match_parent"
-        android:layout_width="@dimen/book_cover_height_cart_item" />
-
-    <RelativeLayout style="@style/ConfirmButton"
-        android:id="@+id/book_cart_item_delete"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_centerVertical="true"
-        android:layout_marginRight="@dimen/heavy_border_margin"
-        android:layout_marginEnd="@dimen/heavy_border_margin" >
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <ImageView
+            android:id="@+id/book_cart_item_cover"
+            android:layout_width="@dimen/book_cover_height_cart_item"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/light_border_margin"/>
+
+        <RelativeLayout
+            android:id="@+id/book_cart_item_delete"
+            style="@style/ConfirmButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/delete"/>
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="@dimen/heavy_border_margin"
+            android:layout_marginRight="@dimen/heavy_border_margin">
 
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/delete" />
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/book_cart_item_title"
+            style="@style/TitleTextView"
+            android:layout_toEndOf="@id/book_cart_item_cover"
+            android:layout_toLeftOf="@id/book_cart_item_delete"
+            android:layout_toRightOf="@id/book_cart_item_cover"
+            android:layout_toStartOf="@id/book_cart_item_delete"
+            android:textSize="20sp"
+            android:textStyle="italic" />
+
+        <TextView
+            android:id="@+id/book_cart_item_isbn"
+            style="@style/SubTitleTextView"
+            android:layout_below="@+id/book_cart_item_title"
+            android:layout_marginEnd="@dimen/widget_separation"
+            android:layout_marginLeft="@dimen/widget_separation"
+            android:layout_marginRight="@dimen/widget_separation"
+            android:layout_marginStart="@dimen/widget_separation"
+            android:layout_toEndOf="@id/book_cart_item_cover"
+            android:layout_toLeftOf="@id/book_cart_item_delete"
+            android:layout_toRightOf="@id/book_cart_item_cover"
+            android:layout_toStartOf="@id/book_cart_item_delete"
+            android:gravity="start" />
+
+        <TextView
+            android:id="@+id/book_cart_item_price"
+            style="@style/TitleTextView"
+            android:layout_alignParentBottom="true"
+            android:layout_toLeftOf="@id/book_cart_item_delete"
+            android:layout_toStartOf="@id/book_cart_item_delete"
+            android:text="50 €"
+            android:textStyle="italic" />
     </RelativeLayout>
-
-    <TextView style="@style/TitleTextView"
-        android:id="@+id/book_cart_item_title"
-        android:layout_toRightOf="@id/book_cart_item_cover"
-        android:layout_toEndOf="@id/book_cart_item_cover"
-        android:layout_toLeftOf="@id/book_cart_item_delete"
-        android:layout_toStartOf="@id/book_cart_item_delete"
-        android:textStyle="italic"
-        android:textSize="20sp"/>
-
-    <TextView style="@style/SubTitleTextView"
-        android:id="@+id/book_cart_item_isbn"
-        android:layout_below="@+id/book_cart_item_title"
-        android:layout_toRightOf="@id/book_cart_item_cover"
-        android:layout_toEndOf="@id/book_cart_item_cover"
-        android:layout_marginLeft="@dimen/widget_separation"
-        android:layout_marginStart="@dimen/widget_separation"
-        android:layout_toLeftOf="@id/book_cart_item_delete"
-        android:layout_toStartOf="@id/book_cart_item_delete"
-        android:gravity="start"
-        />
-
-    <TextView style="@style/TitleTextView"
-        android:id="@+id/book_cart_item_price"
-        android:layout_alignParentBottom="true"
-        android:text="50 €"
-        android:textStyle="italic"
-        android:layout_toLeftOf="@id/book_cart_item_delete"
-        android:layout_toStartOf="@id/book_cart_item_delete"/>
-
-</RelativeLayout>
+</android.support.v7.widget.CardView>

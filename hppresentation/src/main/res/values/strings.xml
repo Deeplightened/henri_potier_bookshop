@@ -25,6 +25,15 @@
     <!--Error Messages-->
     <string name="retry_text">Réessayer</string>
     <string name="error_message_network_failed">Une erreur est survenue pendant le téléchargement. Vérifiez si le réseau est disponible puis réessayer.</string>
+    <string name="confirm_cart_title_dialog">Valider le panier</string>
 
+    <plurals name="confirm_cart_message_dialog">
+        <item quantity="zero">Confirmez-vous la commande du livre de ce panier ?</item>
+        <item quantity="one">Confirmez-vous la commande du livre de ce panier ?</item>
+        <item quantity="other">Confirmez-vous la commande des %d livres de ce panier ?</item>
+    </plurals>
+
+    <string name="validated_cart_title_dialog">Panier commandé</string>
+    <string name="validated_cart_message_dialog">Votre commande a été effectuée.\n\nMerci d\'avoir utilisé cette application de démonstration :)\n\nN\'hésitez pas à remonter tout bug constaté !</string>
 
 </resources>

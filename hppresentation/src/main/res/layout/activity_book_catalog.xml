@@ -4,14 +4,15 @@
     android:layout_height="match_parent"
     tools:context=".BookCatalogActivity">
 
-    <include layout="@layout/toolbar"
-        android:id="@+id/toolbar"/>
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar" />
 
     <fragment
-        android:name="fr.enlight.henripotierbookshop.presentation.views.fragments.BookCatalogFragment"
         android:id="@+id/fragment_book_catalog"
-        android:layout_below="@id/toolbar"
+        android:name="fr.enlight.henripotierbookshop.presentation.views.fragments.BookCatalogFragment"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:layout_below="@id/toolbar" />
 
 </RelativeLayout>

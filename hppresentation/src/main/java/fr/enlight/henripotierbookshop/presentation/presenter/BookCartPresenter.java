@@ -2,6 +2,7 @@ package fr.enlight.henripotierbookshop.presentation.presenter;
 
 import android.content.Context;
 import android.util.Log;
+import android.util.TypedValue;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +25,8 @@ public class BookCartPresenter implements AbstractPresenter {
     private final BookCartModel bookCartModel;
 
     private BookCartPresentableView presentableView;
+
+    private float tvaPercentage = -1;
 
     public BookCartPresenter(CommercialOffersInteractor interactor, BookCartModel bookCartModel){
         this.interactor = interactor;
@@ -58,7 +61,7 @@ public class BookCartPresenter implements AbstractPresenter {
      * Ask to load the cart content (list of books and commercial offers associated to this list).
      * The PresentableView is then updated with the method updateCartContent and updateCartTotalPrice.
      */
-    private void loadCartContent() {
+    public void loadCartContent() {
         presentableView.showLoadingView();
 
         // Prepare parameters
@@ -139,8 +142,22 @@ public class BookCartPresenter implements AbstractPresenter {
      * Notifies the PresentableView that the cart has been updated
      */
     private void notifyCartUpdated() {
+        double total = bookCartModel.computeTotalWithOffers();
+
+        double tva = total * getTvaPercentage() / 100;
+
         presentableView.updateCartContent(bookCartModel.getListBooks(), bookCartModel.getOfferList());
-        presentableView.updateCartTotalPrice(bookCartModel.computeTotalWithOffers());
+        presentableView.updateCartTotalPrice(total, tva);
+    }
+
+    public float getTvaPercentage() {
+        if(tvaPercentage < 0){
+            Context context = presentableView.getContext();
+            TypedValue typedValue = new TypedValue();
+            context.getResources().getValue(R.dimen.tva_percentage, typedValue, true);
+            tvaPercentage = typedValue.getFloat();
+        }
+        return tvaPercentage;
     }
 
     /**
@@ -150,6 +167,18 @@ public class BookCartPresenter implements AbstractPresenter {
     public void deleteBookItem(Book bookItem) {
         bookCartModel.removeBook(bookItem);
         notifyCartUpdated();
+    }
+
+    /**
+     * Clear the cart from all books and offers.
+     */
+    public void clearCart() {
+        bookCartModel.clearBookList();
+        bookCartModel.setOfferList(null);
+    }
+
+    public int getCartBookCount() {
+        return bookCartModel.bookListSize();
     }
 
     /**
@@ -193,6 +222,6 @@ public class BookCartPresenter implements AbstractPresenter {
          *
          * @param total the total price of the cart
          */
-        void updateCartTotalPrice(double total);
+        void updateCartTotalPrice(double total, double tva);
     }
 }

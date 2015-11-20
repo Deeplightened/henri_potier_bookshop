@@ -2,8 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
     android:background="@android:color/white"
+    android:orientation="vertical"
     android:paddingBottom="@dimen/heavy_border_margin">
 
     <ImageView
@@ -30,8 +30,8 @@
             android:layout_marginEnd="@dimen/heavy_border_margin"
             android:layout_marginRight="@dimen/heavy_border_margin"
             android:drawableLeft="@drawable/add_cart"
-            android:drawableStart="@drawable/add_cart"
-            android:drawablePadding="@dimen/padding_soft" />
+            android:drawablePadding="@dimen/padding_soft"
+            android:drawableStart="@drawable/add_cart" />
 
         <TextView
             android:id="@+id/book_price_textview"
