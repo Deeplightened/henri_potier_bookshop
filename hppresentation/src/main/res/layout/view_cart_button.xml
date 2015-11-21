@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:clickable="true"
+    style="@android:style/Widget.ActionButton"
+    android:background="@android:color/transparent">
+
+    <ImageView
+        android:id="@+id/cart_icon_imageview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/cart_selector"/>
+
+    <TextView
+        android:id="@+id/cart_book_counter_textview"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:background="@drawable/circular_white_background"
+        android:gravity="center"
+        android:textSize="8sp"
+        android:layout_marginTop="-10dp"
+        android:layout_marginStart="-10dp"
+        android:layout_marginLeft="-10dp"
+        android:layout_toRightOf="@+id/cart_icon_imageview"
+        android:layout_toEndOf="@+id/cart_icon_imageview" />
+</RelativeLayout>

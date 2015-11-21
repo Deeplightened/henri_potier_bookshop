@@ -1,9 +1,14 @@
 package fr.enlight.henripotierbookshop.presentation.views.activities;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import javax.inject.Inject;
 
@@ -68,6 +73,7 @@ public class BookCatalogActivity extends AbstractActivity implements BookCatalog
     protected void onResume() {
         super.onResume();
         bookCatalogPresenter.resume();
+        invalidateOptionsMenu();
     }
 
     @Override
@@ -82,19 +88,34 @@ public class BookCatalogActivity extends AbstractActivity implements BookCatalog
         bookCatalogPresenter.destroy();
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+        menu.clear();
         getMenuInflater().inflate(R.menu.menu_book_catalog, menu);
-        return true;
-    }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if(item.getItemId() == R.id.menu_cart_button){
-            // On cart icon clicked, we redirect to the BookCartActivity
-            navigationManager.startBookCartActivity(this);
+        MenuItem item = menu.findItem(R.id.menu_cart_button);
+        MenuItemCompat.setActionView(item, R.layout.view_cart_button);
+        View view = MenuItemCompat.getActionView(item);
+
+        TextView counterTextView = (TextView) view.findViewById(R.id.cart_book_counter_textview);
+        ImageView logoTextView = (ImageView) view.findViewById(R.id.cart_icon_imageview);
+        int bookCartSize = bookCatalogPresenter.getBookCartSize();
+        if(bookCartSize == 0){
+            counterTextView.setVisibility(View.INVISIBLE);
+            logoTextView.setEnabled(false);
+        } else {
+            counterTextView.setVisibility(View.VISIBLE);
+            counterTextView.setText(Integer.toString(bookCartSize));
+            logoTextView.setEnabled(true);
+            view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    navigationManager.startBookCartActivity(BookCatalogActivity.this);
+                }
+            });
         }
-        return super.onOptionsItemSelected(item);
+        return true;
     }
 
     @Override

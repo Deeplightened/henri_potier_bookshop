@@ -22,4 +22,5 @@
     <dimen name="error_message_size">16sp</dimen>
     <dimen name="title_size">16sp</dimen>
     <dimen name="subtitle_size">12sp</dimen>
+    <dimen name="cart_icon_dimen">40dp</dimen>
 </resources>

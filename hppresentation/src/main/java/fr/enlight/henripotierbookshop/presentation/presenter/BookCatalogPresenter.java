@@ -69,6 +69,7 @@ public class BookCatalogPresenter implements AbstractPresenter {
             for (Book book : bookModel) {
                 book.setInCart(bookCartModel.containsBook(book));
             }
+            presentableView.updateBookCatalog(bookModel);
         }
     }
 

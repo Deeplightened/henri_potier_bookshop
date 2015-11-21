@@ -60,7 +60,7 @@ public class BookCartModel {
 //        }
 
         if(minusReduction > 0){
-            result -= minusReduction;
+            result = rawTotal - minusReduction;
         }
         // Result must always be positive
         result = Math.max(result, 0);
@@ -85,10 +85,6 @@ public class BookCartModel {
 
     public void clearBookList() {
         listBooks.clear();
-    }
-
-    public boolean isEmpty() {
-        return listBooks.isEmpty();
     }
 
     public List<Book> getListBooks() {
