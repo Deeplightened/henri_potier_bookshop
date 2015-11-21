@@ -33,34 +33,28 @@ public class BookCartModel {
      * @return the real total
      */
     public double computeTotalWithOffers() {
-        double result = 0;
+        double result;
         double rawTotal = computeRawTotal();
 
         if(rawTotal <= 0){
             return 0;
         }
 
-//        float percentageReduction = 0;
+        result = rawTotal;
+
         float minusReduction = 0;
 
         for (BookOffer bookOffer : offerList) {
             String reductionType = bookOffer.getReductionType();
-//            if(reductionType.equals(BookOffer.PERCENTAGE_REDUCTION_TYPE)){
-//                percentageReduction += bookOffer.getReductionValue();
-//
-//            } else
+
             if(reductionType.equals(BookOffer.MINUS_REDUCTION_TYPE)){
                 minusReduction += bookOffer.getReductionValue();
 
             }
         }
-        // Percentage are ignored so we calculate the minus reduction only
-//        if(percentageReduction > 0 && percentageReduction <= 100){
-//            result = rawTotal - (percentageReduction * rawTotal / 100);
-//        }
 
         if(minusReduction > 0){
-            result = rawTotal - minusReduction;
+            result -= minusReduction;
         }
         // Result must always be positive
         result = Math.max(result, 0);
