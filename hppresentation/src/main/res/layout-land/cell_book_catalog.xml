@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="180dp"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/heavy_border_margin">
+
+    <ImageView
+        android:id="@+id/book_cover_imageview"
+        style="@style/BookVerticalImageView"/>
+
+    <TextView
+        android:id="@+id/book_title_textview"
+        style="@style/TitleTextView"
+        android:layout_width="match_parent"
+        android:textStyle="italic" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/book_add_to_cart_button"
+            style="@style/AddToCartButton"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginEnd="@dimen/heavy_border_margin"
+            android:layout_marginRight="@dimen/heavy_border_margin"
+            android:drawableLeft="@drawable/add_cart"
+            android:drawablePadding="@dimen/padding_soft"
+            android:drawableStart="@drawable/add_cart" />
+
+        <TextView
+            android:id="@+id/book_price_textview"
+            style="@style/PriceTextView"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="@dimen/widget_separation"
+            android:layout_marginRight="@dimen/widget_separation"
+            android:layout_toLeftOf="@id/book_add_to_cart_button"
+            android:layout_toStartOf="@id/book_add_to_cart_button"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:textSize="16sp"
+            android:textStyle="bold|italic" />
+
+    </RelativeLayout>
+
+</LinearLayout>

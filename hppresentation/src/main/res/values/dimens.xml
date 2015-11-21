@@ -14,7 +14,7 @@
     <dimen name="light_border_margin">5dp</dimen>
     <dimen name="heavy_border_margin">10dp</dimen>
 
-    <dimen name="book_cover_width_catalog">96dp</dimen>
+    <dimen name="book_cover_width_catalog">148dp</dimen>
     <dimen name="book_cover_height_catalog">210dp</dimen>
     <dimen name="book_cover_width_cart_item">148dp</dimen>
     <dimen name="book_cover_height_cart_item">210dp</dimen>

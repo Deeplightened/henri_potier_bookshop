@@ -43,7 +43,7 @@
         android:id="@+id/book_cart_validate"
         style="@style/ConfirmButton"
         android:layout_centerHorizontal="true"
-        android:layout_below="@id/book_cart_total_value"
+        android:layout_below="@id/book_cart_tva_textview"
         android:layout_margin="@dimen/heavy_border_margin"
         android:text="@string/book_cart_validate"
         android:textStyle="bold" />

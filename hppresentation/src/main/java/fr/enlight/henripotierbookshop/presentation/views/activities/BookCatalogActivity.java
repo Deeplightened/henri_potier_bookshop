@@ -32,6 +32,8 @@ public class BookCatalogActivity extends AbstractActivity implements BookCatalog
     // Internal fragment, contained in the activity_book_catalog layout
     BookCatalogFragment bookCatalogFragment;
 
+    private boolean cartActivated = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -96,10 +98,20 @@ public class BookCatalogActivity extends AbstractActivity implements BookCatalog
     }
 
     @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        MenuItem cartItem = menu.getItem(0);
+        if(cartItem != null){
+            cartItem.setEnabled(cartActivated);
+        }
+        return super.onPrepareOptionsMenu(menu);
+    }
+
+    @Override
     public void onAddToCartSelected(Book book) {
         bookCatalogPresenter.addToCart(book);
         if(bookCatalogPresenter.getBookCartSize() > 0){
-            // TODO invalidateOptionsMenu();
+            cartActivated = true;
+            invalidateOptionsMenu();
         }
     }
 

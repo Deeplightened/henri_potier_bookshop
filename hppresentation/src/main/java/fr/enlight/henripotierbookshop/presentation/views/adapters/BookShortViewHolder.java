@@ -34,6 +34,7 @@ public class BookShortViewHolder extends RecyclerView.ViewHolder {
     @Bind(R.id.book_add_to_cart_button)
     TextView addToCartButton;
 
+
     private BookCatalogFragment.OnBookCatalogInteractionListener interactionListener;
     private Book bookModel;
 
@@ -50,7 +51,7 @@ public class BookShortViewHolder extends RecyclerView.ViewHolder {
 
             String title = book.getTitle();
             short price = book.getPrice();
-            String coverImageUrl = book.getCoverImageUrl();
+            final String coverImageUrl = book.getCoverImageUrl();
 
             if(title != null){
                 titleTextView.setText(title);
@@ -59,7 +60,7 @@ public class BookShortViewHolder extends RecyclerView.ViewHolder {
                 priceTextView.setText(context.getString(R.string.country_currency_placeholder, price));
             }
 
-            if(coverImageUrl != null){
+            if(coverImageUrl != null) {
                 Picasso.with(context)
                         .load(coverImageUrl)
                         .fit()
@@ -91,5 +92,4 @@ public class BookShortViewHolder extends RecyclerView.ViewHolder {
     public void setInteractionListener(BookCatalogFragment.OnBookCatalogInteractionListener interactionListener) {
         this.interactionListener = interactionListener;
     }
-
 }

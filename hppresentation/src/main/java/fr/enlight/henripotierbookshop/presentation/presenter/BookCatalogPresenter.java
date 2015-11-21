@@ -37,11 +37,7 @@ public class BookCatalogPresenter implements AbstractPresenter {
     @Override
     public void resume() {
         // We update the book list in function of there presence in the cart
-        if(bookModel != null) {
-            for (Book book : bookModel) {
-                book.setInCart(bookCartModel.containsBook(book));
-            }
-        }
+        updateBookInCartStatus();
     }
 
     @Override
@@ -68,6 +64,14 @@ public class BookCatalogPresenter implements AbstractPresenter {
         interactor.execute(new BookCatalogSubscriber());
     }
 
+    private void updateBookInCartStatus() {
+        if(bookModel != null) {
+            for (Book book : bookModel) {
+                book.setInCart(bookCartModel.containsBook(book));
+            }
+        }
+    }
+
     /**
      * Convert received HPBook list to Book entity list managed by the presentation layer
      * @param hpBooks the received HPBook list
@@ -91,8 +95,15 @@ public class BookCatalogPresenter implements AbstractPresenter {
     public void addToCart(Book book) {
         if(book != null && !bookCartModel.containsBook(book)){
             bookCartModel.addBook(book);
-            // If the book has been added to cart, we notify the update of this book
         }
+    }
+
+    /**
+     * Notify the PresentableView of the update of the book catalog
+     */
+    public void notifyUpdateBookCatalog(){
+        updateBookInCartStatus();
+        presentableView.updateBookCatalog(bookModel);
     }
 
     /**
@@ -122,7 +133,7 @@ public class BookCatalogPresenter implements AbstractPresenter {
         @Override
         public void onNext(List<HPBook> hpBooks) {
             bookModel = convertHPBooks(hpBooks);
-            presentableView.updateBookCatalog(bookModel);
+            notifyUpdateBookCatalog();
             presentableView.hideLoadingView();
             Log.i(getClass().getSimpleName(), "Book received : " + hpBooks.toString());
         }
