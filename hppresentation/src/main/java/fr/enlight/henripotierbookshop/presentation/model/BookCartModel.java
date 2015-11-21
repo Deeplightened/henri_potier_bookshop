@@ -40,23 +40,25 @@ public class BookCartModel {
             return 0;
         }
 
-        float percentageReduction = 0, minusReduction = 0;
+//        float percentageReduction = 0;
+        float minusReduction = 0;
+
         for (BookOffer bookOffer : offerList) {
             String reductionType = bookOffer.getReductionType();
-
-            if(reductionType.equals(BookOffer.PERCENTAGE_REDUCTION_TYPE)){
-                percentageReduction += bookOffer.getReductionValue();
-
-            } else if(reductionType.equals(BookOffer.MINUS_REDUCTION_TYPE)){
+//            if(reductionType.equals(BookOffer.PERCENTAGE_REDUCTION_TYPE)){
+//                percentageReduction += bookOffer.getReductionValue();
+//
+//            } else
+            if(reductionType.equals(BookOffer.MINUS_REDUCTION_TYPE)){
                 minusReduction += bookOffer.getReductionValue();
 
             }
         }
-        // We calculate percentage first
-        if(percentageReduction > 0 && percentageReduction <= 100){
-            result = rawTotal - (percentageReduction * rawTotal / 100);
-        }
-        // Then minus reduction
+        // Percentage are ignored so we calculate the minus reduction only
+//        if(percentageReduction > 0 && percentageReduction <= 100){
+//            result = rawTotal - (percentageReduction * rawTotal / 100);
+//        }
+
         if(minusReduction > 0){
             result -= minusReduction;
         }
