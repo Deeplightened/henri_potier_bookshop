@@ -56,7 +56,7 @@ public class CloudHPBookDataSource implements IHPBookDataSource {
                         subscriber.onError(new NetworkConnectivityException());
                     }
                 } catch (Exception exp) {
-                    subscriber.onError(new NetworkConnectivityException(exp.getMessage(), exp.getCause()));
+                    subscriber.onError(exp);
                 }
             }
         });
@@ -84,7 +84,7 @@ public class CloudHPBookDataSource implements IHPBookDataSource {
                         subscriber.onError(new NetworkConnectivityException());
                     }
                 } catch (Exception exp) {
-                    subscriber.onError(new NetworkConnectivityException(exp.getMessage(), exp.getCause()));
+                    subscriber.onError(exp);
                 }
             }
         });

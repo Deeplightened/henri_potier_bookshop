@@ -1,11 +1,54 @@
 package fr.enlight.hpdata.interactors;
 
-import junit.framework.TestCase;
+import android.test.AndroidTestCase;
+
+import java.util.List;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.TimeUnit;
+
+import fr.enlight.hpdata.hpbooks.BookstoreModel;
+import fr.enlight.hpdata.hpbooks.entities.HPBook;
+import rx.Subscriber;
 
 /**
- * Created by yhuriez on 16/11/2015.
+ * Test class that will check if the BookCatalogInteractor correctly send his informations.
  */
-public class BookCatalogInteractorTest {
+public class BookCatalogInteractorTest extends AndroidTestCase {
+
+    BookCatalogInteractor interactor;
+    final CountDownLatch signal = new CountDownLatch(1);
 
 
+    @Override
+    protected void setUp() throws Exception {
+        super.setUp();
+
+        interactor = new BookCatalogInteractor(new BookstoreModel(getContext()));
+    }
+
+    /**
+     * Test the normal case, with network working correctly.
+     */
+    public void testNormalCase() throws InterruptedException {
+        signal.await(10, TimeUnit.SECONDS);
+
+        interactor.execute(new Subscriber<List<HPBook>>() {
+            @Override
+            public void onCompleted() {
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                fail("An error has been thrown : " + e.getMessage());
+                signal.countDown();
+            }
+
+            @Override
+            public void onNext(List<HPBook> hpBooks) {
+                assertNotNull("Received book list is null", hpBooks);
+                assertFalse("Received book list is empty", hpBooks.isEmpty());
+                signal.countDown();
+            }
+        });
+    }
 }

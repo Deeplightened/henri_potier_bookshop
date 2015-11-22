@@ -11,7 +11,8 @@ import fr.enlight.hpdata.hpbooks.entities.HPBook;
 import fr.enlight.hpdata.hpbooks.entities.HPBookCommercialOffers;
 
 /**
- * Created by enlight on 15/11/2015.
+ * Test class that will check if the webservices downloader class is still working, or if the webservices
+ * on the server side are still matching the interface contract.
  */
 public class HPBookstoreDownloaderTest extends TestCase {
 

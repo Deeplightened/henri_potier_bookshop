@@ -2,10 +2,10 @@ package fr.enlight.hpdata.hpbooks.network;
 
 import java.util.List;
 
+import fr.enlight.hpdata.exceptions.IncorrectParametersException;
+import fr.enlight.hpdata.exceptions.NetworkConnectivityException;
 import fr.enlight.hpdata.hpbooks.entities.HPBook;
 import fr.enlight.hpdata.hpbooks.entities.HPBookCommercialOffers;
-import fr.enlight.hpdata.exceptions.InternalException;
-import fr.enlight.hpdata.exceptions.NetworkConnectivityException;
 import retrofit.Call;
 import retrofit.GsonConverterFactory;
 import retrofit.Response;
@@ -58,7 +58,7 @@ public class HPBookstoreDownloader {
         HPBookCommercialOffers result = null;
 
         if (isbnBookList == null || isbnBookList.isEmpty()) {
-            throw new InternalException("No ISBN parameter for commercial offers downloading");
+            throw new IncorrectParametersException("No ISBN parameter for commercial offers downloading");
         }
 
         String isbnParameter = "";

@@ -2,8 +2,12 @@ package fr.enlight.henripotierbookshop.presentation.presenter;
 
 import junit.framework.TestCase;
 
+/**
+ * Test class that check the
+ */
 public class BookCatalogPresenterTest extends TestCase {
 
+    
 
 //    handler.postDelayed(new Runnable() {
 //        @Override
