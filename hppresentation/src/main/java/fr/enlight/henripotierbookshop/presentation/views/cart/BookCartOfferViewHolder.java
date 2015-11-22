@@ -1,4 +1,4 @@
-package fr.enlight.henripotierbookshop.presentation.views.adapters;
+package fr.enlight.henripotierbookshop.presentation.views.cart;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -12,7 +12,7 @@ import fr.enlight.henripotierbookshop.presentation.model.BookOffer;
 /**
  * A ViewHolder used to contains
  */
-public class BookOfferViewHolder extends RecyclerView.ViewHolder {
+public class BookCartOfferViewHolder extends RecyclerView.ViewHolder {
 
     @Bind(R.id.book_cart_offer_message)
     TextView messageTextView;
@@ -20,7 +20,7 @@ public class BookOfferViewHolder extends RecyclerView.ViewHolder {
     @Bind(R.id.book_cart_offer_value)
     TextView valueTextView;
 
-    public BookOfferViewHolder(View itemView) {
+    public BookCartOfferViewHolder(View itemView) {
         super(itemView);
         ButterKnife.bind(this, itemView);
     }

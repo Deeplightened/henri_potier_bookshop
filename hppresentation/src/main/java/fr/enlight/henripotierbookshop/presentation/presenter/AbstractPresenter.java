@@ -18,6 +18,8 @@ public interface AbstractPresenter {
 
     void destroy();
 
+    void refresh();
+
     /**
      * Defines the base of all PresentableView. A view must implements this interface and register to the Presenter
      * to be notify with the wanted data or state evolutions.

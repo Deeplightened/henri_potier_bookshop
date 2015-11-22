@@ -67,17 +67,12 @@ public class Book {
 
         Book book = (Book) o;
 
-        if (price != book.price) return false;
-        if (title != null ? !title.equals(book.title) : book.title != null) return false;
         return !(isbn != null ? !isbn.equals(book.isbn) : book.isbn != null);
 
     }
 
     @Override
     public int hashCode() {
-        int result = title != null ? title.hashCode() : 0;
-        result = 71 * result + (int) price;
-        result = 51 * result + (isbn != null ? isbn.hashCode() : 0);
-        return result;
+        return isbn != null ? isbn.hashCode() : 0;
     }
 }

@@ -1,4 +1,4 @@
-package fr.enlight.henripotierbookshop.presentation.views.adapters;
+package fr.enlight.henripotierbookshop.presentation.views.catalog;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -10,12 +10,11 @@ import java.util.List;
 
 import fr.enlight.henripotierbookshop.R;
 import fr.enlight.henripotierbookshop.presentation.model.Book;
-import fr.enlight.henripotierbookshop.presentation.views.fragments.BookCatalogFragment;
 
 /**
  * An adapter to presents a list of Book
  */
-public class BookCatalogAdapter extends RecyclerView.Adapter<BookShortViewHolder>{
+public class BookCatalogAdapter extends RecyclerView.Adapter<BookCatalogViewHolder>{
 
     private final Context context;
     private List<Book> bookList;
@@ -26,17 +25,17 @@ public class BookCatalogAdapter extends RecyclerView.Adapter<BookShortViewHolder
     }
 
     @Override
-    public BookShortViewHolder onCreateViewHolder(ViewGroup viewGroup, int position) {
+    public BookCatalogViewHolder onCreateViewHolder(ViewGroup viewGroup, int position) {
         View itemView = LayoutInflater.from(context)
                 .inflate(R.layout.cell_book_catalog, viewGroup, false);
-        return new BookShortViewHolder(context, itemView);
+        return new BookCatalogViewHolder(context, itemView);
     }
 
     @Override
-    public void onBindViewHolder(BookShortViewHolder bookShortViewHolder, int position) {
+    public void onBindViewHolder(BookCatalogViewHolder bookCatalogViewHolder, int position) {
         if(bookList != null){
-            bookShortViewHolder.setBook(bookList.get(position));
-            bookShortViewHolder.setInteractionListener(interactionListener);
+            bookCatalogViewHolder.setBook(bookList.get(position));
+            bookCatalogViewHolder.setInteractionListener(interactionListener);
         }
     }
 

@@ -1,4 +1,4 @@
-package fr.enlight.henripotierbookshop.presentation.views.fragments;
+package fr.enlight.henripotierbookshop.presentation.views.base;
 
 import android.app.ProgressDialog;
 import android.content.Context;

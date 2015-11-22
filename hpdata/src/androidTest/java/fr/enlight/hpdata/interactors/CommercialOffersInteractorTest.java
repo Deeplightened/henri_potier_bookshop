@@ -36,8 +36,6 @@ public class CommercialOffersInteractorTest extends AndroidTestCase {
      * Test the case with a single ISBN number, with network working correctly.
      */
     public void testSingleISBNCase() throws InterruptedException {
-        signal.await(10, TimeUnit.SECONDS);
-
         interactor.setIsbnParameters(Collections.singletonList(BOOK_ISBN_1));
         interactor.execute(new Subscriber<HPBookCommercialOffers>() {
             @Override
@@ -58,14 +56,14 @@ public class CommercialOffersInteractorTest extends AndroidTestCase {
                 signal.countDown();
             }
         });
+
+        signal.await(10, TimeUnit.SECONDS);
     }
 
     /**
      * Test the case with a single ISBN number, with network working correctly.
      */
     public void testMultipleISBNCase() throws InterruptedException {
-        signal.await(10, TimeUnit.SECONDS);
-
         interactor.setIsbnParameters(Arrays.asList(BOOK_ISBN_1, BOOK_ISBN_2));
         interactor.execute(new Subscriber<HPBookCommercialOffers>() {
             @Override
@@ -86,14 +84,14 @@ public class CommercialOffersInteractorTest extends AndroidTestCase {
                 signal.countDown();
             }
         });
+
+        signal.await(10, TimeUnit.SECONDS);
     }
 
     /**
      * Test the case with no ISBN number, should triggers an error.
      */
     public void testNoISBNErrorCase() throws InterruptedException {
-        signal.await(10, TimeUnit.SECONDS);
-
         interactor.setIsbnParameters(null);
         interactor.execute(new Subscriber<HPBookCommercialOffers>() {
             @Override
@@ -112,5 +110,7 @@ public class CommercialOffersInteractorTest extends AndroidTestCase {
                 signal.countDown();
             }
         });
+
+        signal.await(10, TimeUnit.SECONDS);
     }
 }

@@ -47,11 +47,28 @@ public class BookCartPresenter implements AbstractPresenter {
         // Nothing to do here
     }
 
+    /**
+     * On 'create' method called, we load the cart content calculation and send
+     * that books in cart with the total result to the presentable view methods
+     * "updateCartContent" and "updateCartTotalPrice"
+     */
     @Override
     public void create() {
         loadCartContent();
     }
 
+
+    /**
+     * Refresh the cart calculation
+     */
+    @Override
+    public void refresh() {
+        loadCartContent();
+    }
+
+    /**
+     * On 'destroy' method called, we disconnect this presenter from any background task
+     */
     @Override
     public void destroy() {
         interactor.unsubscribeCurrentSubscription();
@@ -59,9 +76,9 @@ public class BookCartPresenter implements AbstractPresenter {
 
     /**
      * Ask to load the cart content (list of books and commercial offers associated to this list).
-     * The PresentableView is then updated with the method updateCartContent and updateCartTotalPrice.
+     * The PresentableView is then updated with the method "updateCartContent" and "updateCartTotalPrice".
      */
-    public void loadCartContent() {
+    private void loadCartContent() {
         presentableView.showLoadingView();
 
         // Prepare parameters
@@ -161,7 +178,7 @@ public class BookCartPresenter implements AbstractPresenter {
     /**
      * @return the TVA percentage
      */
-    public float getTvaPercentage() {
+    private float getTvaPercentage() {
         if(tvaPercentage < 0){
             Context context = presentableView.getContext();
             TypedValue typedValue = new TypedValue();

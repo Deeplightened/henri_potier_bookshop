@@ -1,4 +1,4 @@
-package fr.enlight.henripotierbookshop.presentation.views.adapters;
+package fr.enlight.henripotierbookshop.presentation.views.cart;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -13,7 +13,6 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import fr.enlight.henripotierbookshop.R;
 import fr.enlight.henripotierbookshop.presentation.model.Book;
-import fr.enlight.henripotierbookshop.presentation.views.fragments.BookCartFragment;
 
 /**
  * A ViewHolder used to contains

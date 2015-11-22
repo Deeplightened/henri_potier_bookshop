@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:padding="10dp"
     android:background="@drawable/background"
-    tools:context="fr.enlight.henripotierbookshop.presentation.views.fragments.BookCatalogFragment">
+    tools:context="fr.enlight.henripotierbookshop.presentation.views.catalog.BookCatalogFragment">
 
     <!-- Considering the number of books to show, a simple GridView
      is sufficient here, the RecyclerView is defined here for demonstration

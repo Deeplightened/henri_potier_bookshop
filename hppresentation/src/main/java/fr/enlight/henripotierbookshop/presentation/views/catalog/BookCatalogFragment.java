@@ -1,4 +1,4 @@
-package fr.enlight.henripotierbookshop.presentation.views.fragments;
+package fr.enlight.henripotierbookshop.presentation.views.catalog;
 
 import android.content.Context;
 import android.content.res.Configuration;
@@ -14,8 +14,8 @@ import butterknife.Bind;
 import fr.enlight.henripotierbookshop.R;
 import fr.enlight.henripotierbookshop.presentation.model.Book;
 import fr.enlight.henripotierbookshop.presentation.presenter.BookCatalogPresenter;
+import fr.enlight.henripotierbookshop.presentation.views.base.AbstractFragment;
 import fr.enlight.henripotierbookshop.presentation.views.widget.GridDividerDecorator;
-import fr.enlight.henripotierbookshop.presentation.views.adapters.BookCatalogAdapter;
 import fr.enlight.henripotierbookshop.presentation.views.widget.ItemDividerDecorator;
 
 /**

@@ -30,8 +30,6 @@ public class BookCatalogInteractorTest extends AndroidTestCase {
      * Test the normal case, with network working correctly.
      */
     public void testNormalCase() throws InterruptedException {
-        signal.await(10, TimeUnit.SECONDS);
-
         interactor.execute(new Subscriber<List<HPBook>>() {
             @Override
             public void onCompleted() {
@@ -50,5 +48,7 @@ public class BookCatalogInteractorTest extends AndroidTestCase {
                 signal.countDown();
             }
         });
+
+        signal.await(10, TimeUnit.SECONDS);
     }
 }

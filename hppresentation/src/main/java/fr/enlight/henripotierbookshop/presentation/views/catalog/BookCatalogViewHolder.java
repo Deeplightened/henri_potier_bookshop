@@ -1,4 +1,4 @@
-package fr.enlight.henripotierbookshop.presentation.views.adapters;
+package fr.enlight.henripotierbookshop.presentation.views.catalog;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -13,12 +13,12 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import fr.enlight.henripotierbookshop.R;
 import fr.enlight.henripotierbookshop.presentation.model.Book;
-import fr.enlight.henripotierbookshop.presentation.views.fragments.BookCatalogFragment;
+import fr.enlight.henripotierbookshop.presentation.views.catalog.BookCatalogFragment;
 
 /**
  * A ViewHolder used to contains
  */
-public class BookShortViewHolder extends RecyclerView.ViewHolder {
+public class BookCatalogViewHolder extends RecyclerView.ViewHolder {
 
     private final Context context;
 
@@ -38,7 +38,7 @@ public class BookShortViewHolder extends RecyclerView.ViewHolder {
     private BookCatalogFragment.OnBookCatalogInteractionListener interactionListener;
     private Book bookModel;
 
-    public BookShortViewHolder(Context context, View itemView) {
+    public BookCatalogViewHolder(Context context, View itemView) {
         super(itemView);
         this.context = context;
         ButterKnife.bind(this, itemView);

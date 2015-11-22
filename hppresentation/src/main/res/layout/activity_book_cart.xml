@@ -11,7 +11,7 @@
 
     <fragment
         android:id="@+id/fragment_book_cart"
-        android:name="fr.enlight.henripotierbookshop.presentation.views.fragments.BookCartFragment"
+        android:name="fr.enlight.henripotierbookshop.presentation.views.cart.BookCartFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/toolbar" />

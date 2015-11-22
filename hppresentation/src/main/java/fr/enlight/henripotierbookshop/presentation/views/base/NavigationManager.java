@@ -1,7 +1,9 @@
-package fr.enlight.henripotierbookshop.presentation.views.activities;
+package fr.enlight.henripotierbookshop.presentation.views.base;
 
 import android.app.Activity;
 import android.content.Intent;
+
+import fr.enlight.henripotierbookshop.presentation.views.cart.BookCartActivity;
 
 /**
  * This class provides methods to navigate through the application (activities start and fragment transaction).

@@ -1,4 +1,4 @@
-package fr.enlight.henripotierbookshop.presentation.views.activities;
+package fr.enlight.henripotierbookshop.presentation.views.cart;
 
 import android.content.Context;
 import android.content.DialogInterface;
@@ -17,8 +17,8 @@ import fr.enlight.henripotierbookshop.presentation.dependencies.components.BookC
 import fr.enlight.henripotierbookshop.presentation.dependencies.modules.BookCartModule;
 import fr.enlight.henripotierbookshop.presentation.model.Book;
 import fr.enlight.henripotierbookshop.presentation.presenter.BookCartPresenter;
-import fr.enlight.henripotierbookshop.presentation.views.fragments.AbstractFragment;
-import fr.enlight.henripotierbookshop.presentation.views.fragments.BookCartFragment;
+import fr.enlight.henripotierbookshop.presentation.views.base.AbstractActivity;
+import fr.enlight.henripotierbookshop.presentation.views.base.AbstractFragment;
 
 /**
  * Activity presenting the user cart, containing the reserved books.
@@ -91,7 +91,7 @@ public class BookCartActivity extends AbstractActivity implements BookCartFragme
 
     @Override
     public void onRetry(Class<? extends AbstractFragment> fragmentOrigin) {
-        bookCartPresenter.loadCartContent();
+        bookCartPresenter.refresh();
     }
 
     @Override

@@ -34,22 +34,40 @@ public class BookCatalogPresenter implements AbstractPresenter {
         this.presentableView = presentableView;
     }
 
+    /**
+     * This 'resume' method update the book list status
+     * in function of there presence in the cart.
+     */
     @Override
     public void resume() {
-        // We update the book list in function of there presence in the cart
         updateBookInCartStatus();
     }
 
     @Override
-    public void pause() {
+        public void pause() {
         // Nothing to do
     }
 
+    /**
+     * This 'create' method update the book catalog and send it to the presentable view
+     * using his method "updateBookCatalog".
+     */
     @Override
     public void create() {
         updateBookCatalog();
     }
 
+    /**
+     * Refresh the book catalog
+     */
+    @Override
+    public void refresh() {
+        updateBookCatalog();
+    }
+
+    /**
+     * On 'destroy' method called, we disconnect this presenter from any background task
+     */
     @Override
     public void destroy() {
         interactor.unsubscribeCurrentSubscription();
@@ -58,12 +76,15 @@ public class BookCatalogPresenter implements AbstractPresenter {
     /**
      * Ask for the book catalog to be loaded in the presentable view
      */
-    public void updateBookCatalog(){
+    private void updateBookCatalog(){
         presentableView.showLoadingView();
 
         interactor.execute(new BookCatalogSubscriber());
     }
 
+    /**
+     * Update the book 'inCart' status (check if the book is in the cart and update his internal boolean)
+     */
     private void updateBookInCartStatus() {
         if(bookModel != null) {
             for (Book book : bookModel) {
@@ -102,7 +123,7 @@ public class BookCatalogPresenter implements AbstractPresenter {
     /**
      * Notify the PresentableView of the update of the book catalog
      */
-    public void notifyUpdateBookCatalog(){
+    private void notifyUpdateBookCatalog(){
         updateBookInCartStatus();
         presentableView.updateBookCatalog(bookModel);
     }

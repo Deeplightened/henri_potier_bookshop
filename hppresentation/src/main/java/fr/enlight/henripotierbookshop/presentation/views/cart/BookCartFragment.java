@@ -1,4 +1,4 @@
-package fr.enlight.henripotierbookshop.presentation.views.fragments;
+package fr.enlight.henripotierbookshop.presentation.views.cart;
 
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -20,7 +20,7 @@ import fr.enlight.henripotierbookshop.R;
 import fr.enlight.henripotierbookshop.presentation.model.Book;
 import fr.enlight.henripotierbookshop.presentation.model.BookOffer;
 import fr.enlight.henripotierbookshop.presentation.presenter.BookCartPresenter;
-import fr.enlight.henripotierbookshop.presentation.views.adapters.BookCartAdapter;
+import fr.enlight.henripotierbookshop.presentation.views.base.AbstractFragment;
 import fr.enlight.henripotierbookshop.presentation.views.widget.ItemDividerDecorator;
 
 /**

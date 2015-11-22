@@ -1,4 +1,4 @@
-package fr.enlight.henripotierbookshop.presentation.views.activities;
+package fr.enlight.henripotierbookshop.presentation.views.base;
 
 import android.app.AlertDialog;
 import android.app.Fragment;
@@ -22,7 +22,7 @@ public abstract class AbstractActivity extends AppCompatActivity {
     public static final String DIALOG_MESSAGE_RESULT_TAG = "DIALOG_MESSAGE_RESULT";
 
     @Inject
-    NavigationManager navigationManager;
+    protected NavigationManager navigationManager;
 
     /**
      * Adds a {@link Fragment} to this activity's layout.

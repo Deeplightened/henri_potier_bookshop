@@ -1,4 +1,4 @@
-package fr.enlight.henripotierbookshop.presentation.views.activities;
+package fr.enlight.henripotierbookshop.presentation.views.catalog;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
@@ -19,8 +19,8 @@ import fr.enlight.henripotierbookshop.presentation.dependencies.components.BookC
 import fr.enlight.henripotierbookshop.presentation.dependencies.modules.BookCatalogModule;
 import fr.enlight.henripotierbookshop.presentation.model.Book;
 import fr.enlight.henripotierbookshop.presentation.presenter.BookCatalogPresenter;
-import fr.enlight.henripotierbookshop.presentation.views.fragments.AbstractFragment;
-import fr.enlight.henripotierbookshop.presentation.views.fragments.BookCatalogFragment;
+import fr.enlight.henripotierbookshop.presentation.views.base.AbstractActivity;
+import fr.enlight.henripotierbookshop.presentation.views.base.AbstractFragment;
 
 
 /**
@@ -138,6 +138,6 @@ public class BookCatalogActivity extends AbstractActivity implements BookCatalog
 
     @Override
     public void onRetry(Class<? extends AbstractFragment> fragmentOrigin) {
-        bookCatalogPresenter.updateBookCatalog();
+        bookCatalogPresenter.refresh();
     }
 }

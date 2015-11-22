@@ -6,7 +6,7 @@ import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
-import fr.enlight.henripotierbookshop.presentation.views.activities.NavigationManager;
+import fr.enlight.henripotierbookshop.presentation.views.base.NavigationManager;
 
 /**
  * A Dagger Module providing application lifetime dependencies
