@@ -9,7 +9,8 @@
 
     <ImageView
         android:id="@+id/book_cover_imageview"
-        style="@style/BookVerticalImageView" />
+        style="@style/BookVerticalImageView"
+        android:src="@drawable/book_placeholder"/>
 
     <LinearLayout
         style="@style/CatalogBookViewGroup"

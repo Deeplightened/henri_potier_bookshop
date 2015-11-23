@@ -13,6 +13,7 @@
         <ImageView
             android:id="@+id/book_cart_item_cover"
             style="@style/BookHorizontalImageView"
+            android:src="@drawable/book_placeholder"
             android:layout_margin="@dimen/light_border_margin" />
 
         <RelativeLayout
