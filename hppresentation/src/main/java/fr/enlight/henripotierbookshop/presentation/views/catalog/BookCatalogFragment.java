@@ -2,9 +2,7 @@ package fr.enlight.henripotierbookshop.presentation.views.catalog;
 
 import android.content.Context;
 import android.content.res.Configuration;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
@@ -15,8 +13,6 @@ import fr.enlight.henripotierbookshop.R;
 import fr.enlight.henripotierbookshop.presentation.model.Book;
 import fr.enlight.henripotierbookshop.presentation.presenter.BookCatalogPresenter;
 import fr.enlight.henripotierbookshop.presentation.views.base.AbstractFragment;
-import fr.enlight.henripotierbookshop.presentation.views.widget.GridDividerDecorator;
-import fr.enlight.henripotierbookshop.presentation.views.widget.ItemDividerDecorator;
 
 /**
  * This fragment purpose is to presents the book catalog to the user.
@@ -40,18 +36,24 @@ public class BookCatalogFragment extends AbstractFragment implements BookCatalog
     protected void initViews(View view) {
         Context context = getActivity();
 
+        int orientation, columnNumber;
+
         if(getActivity().getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE){
-            // If landscape, recyclerview is a horizontal list
-            recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
-            recyclerView.setHasFixedSize(true);
-            recyclerView.addItemDecoration(new ItemDividerDecorator(getActivity(), ItemDividerDecorator.HORIZONTAL_LIST,
-                    ContextCompat.getDrawable(getContext(), R.drawable.transparent_divider)));
+            // Landscape
+            orientation = GridLayoutManager.HORIZONTAL;
+            columnNumber = getResources().getInteger(R.integer.grid_horizontal_span);
+
         } else {
-            // If portrait, recyclerview is a grid with two columns
-            recyclerView.setLayoutManager(new GridLayoutManager(context, getResources().getInteger(R.integer.grid_layout_span)));
-            recyclerView.setHasFixedSize(true);
-            recyclerView.addItemDecoration(new GridDividerDecorator(context));
+            // Portrait
+            orientation = GridLayoutManager.VERTICAL;
+            columnNumber = getResources().getInteger(R.integer.grid_vertical_span);
         }
+
+        // The grid layout has different number of row in function of the device screen
+        recyclerView.setLayoutManager(new GridLayoutManager(context, columnNumber, orientation , false));
+        recyclerView.setHasFixedSize(true);
+//        recyclerView.addItemDecoration(new GridDividerDecorator(context));
+
         // Set adapter
         bookCatalogAdapter = new BookCatalogAdapter(context);
         bookCatalogAdapter.setInteractionListener(bookCatalogInteractionListener);

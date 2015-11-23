@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
-    <style name="BookVerticalImageView" parent="AppTheme">
-        <item name="android:layout_height">144dp</item>
-        <item name="android:layout_width">110dp</item>
-        <item name="android:layout_gravity">center</item>
+    <style name="BookTitleTextView" parent="TitleTextView">
+        <item name="android:lines">2</item>
     </style>
 
-    <style name="BookViewGroup" parent="AppTheme">
-        <item name="android:layout_height">match_parent</item>
-        <item name="android:layout_width">@dimen/book_catalog_item_width</item>
+    <style name="BookVerticalImageView" parent="AppTheme">
+        <item name="android:layout_height">@dimen/book_cover_height_horizontal</item>
+        <item name="android:layout_width">@dimen/book_cover_width_horizontal</item>
+    </style>
+
+    <style name="CatalogBookViewGroup" parent="AppTheme">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">@dimen/book_catalog_description_width</item>
     </style>
 </resources>

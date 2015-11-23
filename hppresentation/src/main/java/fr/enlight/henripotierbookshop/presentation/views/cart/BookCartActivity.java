@@ -115,6 +115,8 @@ public class BookCartActivity extends AbstractActivity implements BookCartFragme
                         String dialogTitle = getString(R.string.validated_cart_title_dialog);
                         String dialogMessage = getString(R.string.validated_cart_message_dialog);
 
+                        bookCartFragment.hideLoadingView();
+
                         navigationManager.finishActivityWithDialogResult(BookCartActivity.this, dialogTitle, dialogMessage, null);
                     }
                 }, 3000);

@@ -1,6 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <integer name="grid_layout_span">2</integer>
-
     <item name="tva_percentage" format="float" type="dimen">5.5</item>
 </resources>
