@@ -14,21 +14,22 @@
     <dimen name="light_border_margin">5dp</dimen>
     <dimen name="heavy_border_margin">10dp</dimen>
 
+    <dimen name="error_message_size">16sp</dimen>
+    <dimen name="title_size">16sp</dimen>
+    <dimen name="subtitle_size">12sp</dimen>
+    <dimen name="cart_icon_dimen">40dp</dimen>
+
+    <!--Books dimens -->
     <dimen name="book_cover_width_vertical">150dp</dimen>
     <dimen name="book_cover_height_vertical">210dp</dimen>
-
     <dimen name="book_cover_width_horizontal">110dp</dimen>
     <dimen name="book_cover_height_horizontal">144dp</dimen>
-
     <dimen name="book_cart_card_height">230dp</dimen>
-
     <dimen name="book_catalog_description_width">180dp</dimen>
 
     <integer name="grid_vertical_span">2</integer>
     <integer name="grid_horizontal_span">1</integer>
 
-    <dimen name="error_message_size">16sp</dimen>
-    <dimen name="title_size">16sp</dimen>
-    <dimen name="subtitle_size">12sp</dimen>
-    <dimen name="cart_icon_dimen">40dp</dimen>
+
+
 </resources>

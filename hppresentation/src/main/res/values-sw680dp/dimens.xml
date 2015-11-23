@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--For 10' Tablet-->
+    <integer name="grid_vertical_span">3</integer>
+    <integer name="grid_horizontal_span">2</integer>
+</resources>

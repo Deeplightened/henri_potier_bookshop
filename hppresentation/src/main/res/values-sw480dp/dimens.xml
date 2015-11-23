@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <integer name="grid_vertical_span">3</integer>
-    <integer name="grid_horizontal_span">2</integer>
+    <!--For 5' smartphone and 7' Tablet-->
+    <dimen name="book_cover_width_vertical">180dp</dimen>
+    <dimen name="book_cover_height_vertical">250dp</dimen>
+
+    <dimen name="book_cover_width_horizontal">140dp</dimen>
+    <dimen name="book_cover_height_horizontal">196dp</dimen>
+
+    <dimen name="book_cart_card_height">270dp</dimen>
+    <dimen name="book_catalog_description_width">210dp</dimen>
 </resources>
